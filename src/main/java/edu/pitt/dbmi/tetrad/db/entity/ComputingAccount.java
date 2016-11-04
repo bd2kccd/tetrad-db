@@ -54,6 +54,16 @@ public class ComputingAccount implements Serializable {
     @Column(name = "lastLoginDate", length = 19)
     private Date lastLoginDate;
 
+    public ComputingAccount() {
+	connectionName = "";
+	username = "";
+	password = "";
+	scheme = "http";
+	hostname = "";
+	port = 0;
+	createdDate = new Date();
+    }
+    
     public Long getId() {
         return id;
     }
@@ -124,6 +134,10 @@ public class ComputingAccount implements Serializable {
 
     public void setLastLoginDate(Date lastLoginDate) {
         this.lastLoginDate = lastLoginDate;
+    }
+    
+    public String toString() {
+	return connectionName;
     }
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import edu.pitt.dbmi.tetrad.db.entity.ComputingAccount;
 import edu.pitt.dbmi.tetrad.db.repository.ComputingAccountRepository;
@@ -35,7 +36,9 @@ public class ComputingAccountService implements ComputingAccountRepository {
 
     @Override
     public void remove(ComputingAccount computingAccount) {
+	Transaction transaction = session.beginTransaction();
 	session.delete(computingAccount);
+	transaction.commit();
     }
 
     @Override
