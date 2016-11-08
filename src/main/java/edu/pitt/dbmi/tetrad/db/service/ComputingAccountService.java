@@ -26,12 +26,16 @@ public class ComputingAccountService implements ComputingAccountRepository {
     
     @Override
     public void add(ComputingAccount computingAccount) {
+	Transaction transaction = session.beginTransaction();
 	session.save(computingAccount);
+	transaction.commit();
     }
 
     @Override
     public void update(ComputingAccount computingAccount) {
+	Transaction transaction = session.beginTransaction();
 	session.saveOrUpdate(computingAccount);
+	transaction.commit();
     }
 
     @Override
