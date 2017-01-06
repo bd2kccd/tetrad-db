@@ -19,7 +19,7 @@ import javax.persistence.TemporalType;
  * 
  */
 @Entity
-public class ComputingAccount implements Serializable {
+public class HpcAccount implements Serializable {
 
     private static final long serialVersionUID = -3821022006234039451L;
 
@@ -54,7 +54,7 @@ public class ComputingAccount implements Serializable {
     @Column(name = "lastLoginDate", length = 19)
     private Date lastLoginDate;
 
-    public ComputingAccount() {
+    public HpcAccount() {
 	connectionName = "";
 	username = "";
 	password = "";

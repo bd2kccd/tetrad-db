@@ -9,13 +9,13 @@ import org.hibernate.Transaction;
 
 import edu.pitt.dbmi.tetrad.db.entity.AlgorithmParamRequest;
 import edu.pitt.dbmi.tetrad.db.entity.AlgorithmParameter;
-import edu.pitt.dbmi.tetrad.db.entity.ComputingAccount;
+import edu.pitt.dbmi.tetrad.db.entity.HpcAccount;
 import edu.pitt.dbmi.tetrad.db.entity.DataValidation;
-import edu.pitt.dbmi.tetrad.db.entity.JobInfo;
+import edu.pitt.dbmi.tetrad.db.entity.HpcJobInfo;
 import edu.pitt.dbmi.tetrad.db.entity.JvmOption;
-import edu.pitt.dbmi.tetrad.db.repository.JobInfoRepository;
-import edu.pitt.dbmi.tetrad.db.service.ComputingAccountService;
-import edu.pitt.dbmi.tetrad.db.service.JobInfoService;
+import edu.pitt.dbmi.tetrad.db.repository.HpcJobInfoRepository;
+import edu.pitt.dbmi.tetrad.db.service.HpcAccountService;
+import edu.pitt.dbmi.tetrad.db.service.HpcJobInfoService;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -51,10 +51,10 @@ public class AppTest extends TestCase {
 	try {
 	    Transaction transaction = session.beginTransaction();
 
-	    ComputingAccountService computingAccountService = new ComputingAccountService(session);
+	    HpcAccountService computingAccountService = new HpcAccountService(session);
 	    
 	    // Add ComputingAccount
-	    ComputingAccount computingAccount = new ComputingAccount();
+	    HpcAccount computingAccount = new HpcAccount();
 	    computingAccount.setConnectionName("PSC");
 	    computingAccount.setUsername("ccd@pitt.edu");
 	    computingAccount.setPassword("causalinference");
@@ -114,14 +114,14 @@ public class AppTest extends TestCase {
 	    
 	    //JobInfo
 	    String algorithmName = "GFCI";
-	    JobInfo jobInfo = new JobInfo();
+	    HpcJobInfo jobInfo = new HpcJobInfo();
 	    jobInfo.setAlgorithmName(algorithmName);
 	    jobInfo.setAddedTime(new Date());
 	    jobInfo.setAlgorithmParamRequest(algorithmParamRequest);
-	    jobInfo.setComputingAccount(computingAccount);
+	    jobInfo.setHpcAccount(computingAccount);
 	    jobInfo.setStatus(0);
 	    
-	    JobInfoService jobInfoService = new JobInfoService(session);
+	    HpcJobInfoService jobInfoService = new HpcJobInfoService(session);
 	    
 	    jobInfoService.add(jobInfo);
 	    

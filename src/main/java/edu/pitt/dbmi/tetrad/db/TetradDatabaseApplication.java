@@ -10,9 +10,9 @@ import org.hibernate.service.ServiceRegistry;
 
 import edu.pitt.dbmi.tetrad.db.entity.AlgorithmParamRequest;
 import edu.pitt.dbmi.tetrad.db.entity.AlgorithmParameter;
-import edu.pitt.dbmi.tetrad.db.entity.ComputingAccount;
+import edu.pitt.dbmi.tetrad.db.entity.HpcAccount;
 import edu.pitt.dbmi.tetrad.db.entity.DataValidation;
-import edu.pitt.dbmi.tetrad.db.entity.JobInfo;
+import edu.pitt.dbmi.tetrad.db.entity.HpcJobInfo;
 import edu.pitt.dbmi.tetrad.db.entity.JvmOption;
 
 /**
@@ -30,8 +30,8 @@ public class TetradDatabaseApplication {
 	try {
 	    Configuration configuration = new Configuration();
 	    // Mapping
-	    configuration.addAnnotatedClass(ComputingAccount.class);
-	    configuration.addAnnotatedClass(JobInfo.class);
+	    configuration.addAnnotatedClass(HpcAccount.class);
+	    configuration.addAnnotatedClass(HpcJobInfo.class);
 	    configuration.addAnnotatedClass(AlgorithmParamRequest.class);
 	    configuration.addAnnotatedClass(DataValidation.class);
 	    configuration.addAnnotatedClass(AlgorithmParameter.class);
@@ -58,7 +58,7 @@ public class TetradDatabaseApplication {
 		.openSession();
 	session.beginTransaction();
 
-	ComputingAccount computingAccount = new ComputingAccount();
+	HpcAccount computingAccount = new HpcAccount();
 	computingAccount.setConnectionName("psc");
 	computingAccount.setUsername("ccd@pitt.edu");
 	computingAccount.setPassword("causalinference");

@@ -22,7 +22,7 @@ import javax.persistence.OneToOne;
  * 
  */
 @Entity
-public class JobInfo implements Serializable {
+public class HpcJobInfo implements Serializable {
 
     private static final long serialVersionUID = -3402084901576572432L;
 
@@ -57,14 +57,14 @@ public class JobInfo implements Serializable {
     private int status;
     
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "computingAccountId", nullable = false)
-    private ComputingAccount computingAccount;
+    @JoinColumn(name = "hpcAccountId", nullable = false)
+    private HpcAccount hpcAccount;
 
-    public JobInfo() {
+    public HpcJobInfo() {
 	
     }
     
-    public JobInfo(String algorithmName, Date addedTime,
+    public HpcJobInfo(String algorithmName, Date addedTime,
 	    String resultFileName, String resultJsonFileName,
 	    String errorResultFileName, int status) {
 	this.algorithmName = algorithmName;
@@ -75,7 +75,7 @@ public class JobInfo implements Serializable {
 	this.status = status;
     }
 
-    public JobInfo(Long pid, String algorithmName, Date addedTime,
+    public HpcJobInfo(Long pid, String algorithmName, Date addedTime,
 	    String resultFileName, String resultJsonFileName,
 	    String errorResultFileName, int status) {
 	this.pid = pid;
@@ -159,12 +159,12 @@ public class JobInfo implements Serializable {
         this.status = status;
     }
 
-    public ComputingAccount getComputingAccount() {
-        return computingAccount;
+    public HpcAccount getHpcAccount() {
+        return hpcAccount;
     }
 
-    public void setComputingAccount(ComputingAccount computingAccount) {
-        this.computingAccount = computingAccount;
+    public void setHpcAccount(HpcAccount hpcAccount) {
+        this.hpcAccount = hpcAccount;
     }
 
 }
