@@ -29,31 +29,53 @@ public class HpcJobTrack {
     @Column(name = "addedTime", nullable = false)
     private Date addedTime;
 
+    @Column(name = "endedTime")
+    private Date endedTime;
+
+    @Column(name = "canceledTime")
+    private Date canceledTime;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "hpcAccountId", nullable = false)
     private HpcAccount hpcAccount;
 
-    protected Long getId() {
+    public Long getId() {
         return id;
     }
 
-    protected void setId(Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    protected Date getAddedTime() {
+    public Date getAddedTime() {
         return addedTime;
     }
 
-    protected void setAddedTime(Date addedTime) {
+    public void setAddedTime(Date addedTime) {
         this.addedTime = addedTime;
     }
 
-    protected HpcAccount getHpcAccount() {
+    public Date getEndedTime() {
+        return endedTime;
+    }
+
+    public void setEndedTime(Date endedTime) {
+        this.endedTime = endedTime;
+    }
+
+    public Date getCanceledTime() {
+        return canceledTime;
+    }
+
+    public void setCanceledTime(Date canceledTime) {
+        this.canceledTime = canceledTime;
+    }
+
+    public HpcAccount getHpcAccount() {
         return hpcAccount;
     }
 
-    protected void setHpcAccount(HpcAccount hpcAccount) {
+    public void setHpcAccount(HpcAccount hpcAccount) {
         this.hpcAccount = hpcAccount;
     }
 

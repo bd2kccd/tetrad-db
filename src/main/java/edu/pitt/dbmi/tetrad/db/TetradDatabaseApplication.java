@@ -13,6 +13,8 @@ import edu.pitt.dbmi.tetrad.db.entity.AlgorithmParameter;
 import edu.pitt.dbmi.tetrad.db.entity.HpcAccount;
 import edu.pitt.dbmi.tetrad.db.entity.DataValidation;
 import edu.pitt.dbmi.tetrad.db.entity.HpcJobInfo;
+import edu.pitt.dbmi.tetrad.db.entity.HpcJobTrack;
+import edu.pitt.dbmi.tetrad.db.entity.HpcJobTrackState;
 import edu.pitt.dbmi.tetrad.db.entity.JvmOption;
 
 /**
@@ -30,11 +32,13 @@ public class TetradDatabaseApplication {
 	try {
 	    Configuration configuration = new Configuration();
 	    // Mapping
-	    configuration.addAnnotatedClass(HpcAccount.class);
-	    configuration.addAnnotatedClass(HpcJobInfo.class);
+	    configuration.addAnnotatedClass(AlgorithmParameter.class);
 	    configuration.addAnnotatedClass(AlgorithmParamRequest.class);
 	    configuration.addAnnotatedClass(DataValidation.class);
-	    configuration.addAnnotatedClass(AlgorithmParameter.class);
+	    configuration.addAnnotatedClass(HpcAccount.class);
+	    configuration.addAnnotatedClass(HpcJobInfo.class);
+	    configuration.addAnnotatedClass(HpcJobTrack.class);
+	    configuration.addAnnotatedClass(HpcJobTrackState.class);
 	    configuration.addAnnotatedClass(JvmOption.class);
 	    
 	    ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().build();
@@ -60,10 +64,10 @@ public class TetradDatabaseApplication {
 
 	HpcAccount computingAccount = new HpcAccount();
 	computingAccount.setConnectionName("psc");
-	computingAccount.setUsername("ccd@pitt.edu");
-	computingAccount.setPassword("causalinference");
+	computingAccount.setUsername("");
+	computingAccount.setPassword("");
 	computingAccount.setScheme("https");
-	computingAccount.setHostname("ccd1.vm.bridges.psc.edu");
+	computingAccount.setHostname("");
 	computingAccount.setPort(443);
 	computingAccount.setCreatedDate(new Date());
 	session.save(computingAccount);

@@ -40,51 +40,51 @@ public class HpcJobTrackState {
     @JoinColumn(name = "hpcJobTrackId", nullable = false)
     private HpcJobTrack hpcJobTrack;
 
-    protected Long getId() {
+    public Long getId() {
         return id;
     }
 
-    protected void setId(Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    protected int getJobState() {
+    public int getJobState() {
         return jobState;
     }
 
-    protected void setJobState(int jobState) {
+    public void setJobState(int jobState) {
         this.jobState = jobState;
     }
 
-    protected String getProgress() {
+    public String getProgress() {
         return progress;
     }
 
-    protected void setProgress(String progress) {
+    public void setProgress(String progress) {
         this.progress = progress;
     }
 
-    protected Date getAddedTime() {
+    public Date getAddedTime() {
         return addedTime;
     }
 
-    protected void setAddedTime(Date addedTime) {
+    public void setAddedTime(Date addedTime) {
         this.addedTime = addedTime;
     }
 
-    protected Date getLastUpdatedTime() {
+    public Date getLastUpdatedTime() {
         return lastUpdatedTime;
     }
 
-    protected void setLastUpdatedTime(Date lastUpdatedTime) {
+    public void setLastUpdatedTime(Date lastUpdatedTime) {
         this.lastUpdatedTime = lastUpdatedTime;
     }
 
-    protected HpcJobTrack getHpcJobTrack() {
+    public HpcJobTrack getHpcJobTrack() {
         return hpcJobTrack;
     }
 
-    protected void setHpcJobTrack(HpcJobTrack hpcJobTrack) {
+    public void setHpcJobTrack(HpcJobTrack hpcJobTrack) {
         this.hpcJobTrack = hpcJobTrack;
     }
 

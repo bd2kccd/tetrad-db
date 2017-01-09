@@ -56,10 +56,10 @@ public class AppTest extends TestCase {
 	    // Add ComputingAccount
 	    HpcAccount computingAccount = new HpcAccount();
 	    computingAccount.setConnectionName("PSC");
-	    computingAccount.setUsername("ccd@pitt.edu");
-	    computingAccount.setPassword("causalinference");
+	    computingAccount.setUsername("");
+	    computingAccount.setPassword("");
 	    computingAccount.setScheme("https");
-	    computingAccount.setHostname("ccd1.vm.bridges.psc.edu");
+	    computingAccount.setHostname("");
 	    computingAccount.setPort(443);
 	    computingAccount.setCreatedDate(new Date());
 	    computingAccountService.add(computingAccount);
