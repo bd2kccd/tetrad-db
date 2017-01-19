@@ -29,7 +29,7 @@ public class JvmOption implements Serializable {
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "algorithmParamRequestId", nullable = false)
+    @JoinColumn(name = "algorithmParamRequestId")
     private AlgorithmParamRequest algorithmParamRequest;
     
     @Column(name = "parameter", nullable = false)

@@ -3,6 +3,7 @@ package edu.pitt.dbmi.tetrad.db.entity;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +18,8 @@ import javax.persistence.ManyToOne;
  * @author Chirayu (Kong) Wongchokprasitti, PhD
  * 
  */
-public class HpcJobTrackState {
+@Entity
+public class HpcJobLogDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +27,7 @@ public class HpcJobTrackState {
     private Long id;
 
     @Column(name = "jobState", nullable = false)
-    private int jobState;
+    private int jobState = -1; // -1 = Pending; 0 = Submitted;
     
     @Column(name = "progress")
     private String progress;
@@ -33,12 +35,9 @@ public class HpcJobTrackState {
     @Column(name = "addedTime", nullable = false)
     private Date addedTime;
 
-    @Column(name = "lastUpdatedTime")
-    private Date lastUpdatedTime;
-
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "hpcJobTrackId", nullable = false)
-    private HpcJobTrack hpcJobTrack;
+    @JoinColumn(name = "hpcJobLogId", nullable = false)
+    private HpcJobLog hpcJobLog;
 
     public Long getId() {
         return id;
@@ -72,20 +71,12 @@ public class HpcJobTrackState {
         this.addedTime = addedTime;
     }
 
-    public Date getLastUpdatedTime() {
-        return lastUpdatedTime;
+    public HpcJobLog getHpcJobLog() {
+        return hpcJobLog;
     }
 
-    public void setLastUpdatedTime(Date lastUpdatedTime) {
-        this.lastUpdatedTime = lastUpdatedTime;
-    }
-
-    public HpcJobTrack getHpcJobTrack() {
-        return hpcJobTrack;
-    }
-
-    public void setHpcJobTrack(HpcJobTrack hpcJobTrack) {
-        this.hpcJobTrack = hpcJobTrack;
+    public void setHpcJobLog(HpcJobLog hpcJobLog) {
+        this.hpcJobLog = hpcJobLog;
     }
 
 

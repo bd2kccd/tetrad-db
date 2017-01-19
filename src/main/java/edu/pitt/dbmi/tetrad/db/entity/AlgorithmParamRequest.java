@@ -32,9 +32,18 @@ public class AlgorithmParamRequest implements Serializable {
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
-    @Column(name = "datasetFileId", nullable = false)
-    private long datasetFileId;
-   
+    @Column(name = "datasetPath", nullable = false)
+    private String datasetPath;
+    
+    @Column(name = "priorKnowledgePath")
+    private String priorKnowledgePath = null;
+    
+    @Column(name = "variableType", nullable = false)
+    private String variableType;
+    
+    @Column(name = "fileDelimiter", nullable = false)
+    private String fileDelimiter;
+    
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "dataValidationId", nullable = false, updatable = false)
     private DataValidation dataValidation;
@@ -53,12 +62,36 @@ public class AlgorithmParamRequest implements Serializable {
         this.id = id;
     }
 
-    public long getDatasetFileId() {
-        return datasetFileId;
+    public String getDatasetPath() {
+        return datasetPath;
     }
 
-    public void setDatasetFileId(long datasetFileId) {
-        this.datasetFileId = datasetFileId;
+    public void setDatasetPath(String datasetPath) {
+        this.datasetPath = datasetPath;
+    }
+
+    public String getPriorKnowledgePath() {
+        return priorKnowledgePath;
+    }
+
+    public void setPriorKnowledgePath(String priorKnowledgePath) {
+        this.priorKnowledgePath = priorKnowledgePath;
+    }
+
+    public String getVariableType() {
+        return variableType;
+    }
+
+    public void setVariableType(String variableType) {
+        this.variableType = variableType;
+    }
+
+    public String getFileDelimiter() {
+        return fileDelimiter;
+    }
+
+    public void setFileDelimiter(String fileDelimiter) {
+        this.fileDelimiter = fileDelimiter;
     }
 
     public DataValidation getDataValidation() {
@@ -74,7 +107,11 @@ public class AlgorithmParamRequest implements Serializable {
     }
 
     public void setAlgorithmParameters(List<AlgorithmParameter> algorithmParameters) {
-        this.algorithmParameters = algorithmParameters;
+	if(algorithmParameters != null){
+	    for(AlgorithmParameter algorithmParameter : algorithmParameters){
+	        this.algorithmParameters.add(algorithmParameter);
+	    }
+	}
     }
 
     public List<JvmOption> getJvmOptions() {
@@ -82,7 +119,11 @@ public class AlgorithmParamRequest implements Serializable {
     }
 
     public void setJvmOptions(List<JvmOption> jvmOptions) {
-        this.jvmOptions = jvmOptions;
+	if(jvmOptions != null){
+	    for(JvmOption jvmOption : jvmOptions){
+		this.jvmOptions.add(jvmOption);
+	    }
+	}
     }
     
     

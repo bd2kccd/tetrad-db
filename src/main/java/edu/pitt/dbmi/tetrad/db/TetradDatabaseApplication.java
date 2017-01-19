@@ -13,8 +13,8 @@ import edu.pitt.dbmi.tetrad.db.entity.AlgorithmParameter;
 import edu.pitt.dbmi.tetrad.db.entity.HpcAccount;
 import edu.pitt.dbmi.tetrad.db.entity.DataValidation;
 import edu.pitt.dbmi.tetrad.db.entity.HpcJobInfo;
-import edu.pitt.dbmi.tetrad.db.entity.HpcJobTrack;
-import edu.pitt.dbmi.tetrad.db.entity.HpcJobTrackState;
+import edu.pitt.dbmi.tetrad.db.entity.HpcJobLog;
+import edu.pitt.dbmi.tetrad.db.entity.HpcJobLogDetail;
 import edu.pitt.dbmi.tetrad.db.entity.JvmOption;
 
 /**
@@ -37,8 +37,8 @@ public class TetradDatabaseApplication {
 	    configuration.addAnnotatedClass(DataValidation.class);
 	    configuration.addAnnotatedClass(HpcAccount.class);
 	    configuration.addAnnotatedClass(HpcJobInfo.class);
-	    configuration.addAnnotatedClass(HpcJobTrack.class);
-	    configuration.addAnnotatedClass(HpcJobTrackState.class);
+	    configuration.addAnnotatedClass(HpcJobLog.class);
+	    configuration.addAnnotatedClass(HpcJobLogDetail.class);
 	    configuration.addAnnotatedClass(JvmOption.class);
 	    
 	    ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().build();

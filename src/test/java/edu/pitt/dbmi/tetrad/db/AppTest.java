@@ -80,7 +80,9 @@ public class AppTest extends TestCase {
 	    
 	    // AlgorithmParamRequest	    
 	    AlgorithmParamRequest algorithmParamRequest = new AlgorithmParamRequest();
-	    algorithmParamRequest.setDatasetFileId(123L);
+	    algorithmParamRequest.setDatasetPath("~/dataset.txt");
+	    algorithmParamRequest.setVariableType("continuous");
+	    algorithmParamRequest.setFileDelimiter("tab");
 	    algorithmParamRequest.setDataValidation(dataValidation);
 	    dataValidation.setAlgorithmParamRequest(algorithmParamRequest);
 
@@ -116,7 +118,7 @@ public class AppTest extends TestCase {
 	    String algorithmName = "GFCI";
 	    HpcJobInfo jobInfo = new HpcJobInfo();
 	    jobInfo.setAlgorithmName(algorithmName);
-	    jobInfo.setAddedTime(new Date());
+	    jobInfo.setSubmittedTime(new Date());
 	    jobInfo.setAlgorithmParamRequest(algorithmParamRequest);
 	    jobInfo.setHpcAccount(computingAccount);
 	    jobInfo.setStatus(0);

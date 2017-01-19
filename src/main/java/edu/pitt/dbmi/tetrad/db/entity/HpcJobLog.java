@@ -19,7 +19,7 @@ import javax.persistence.ManyToOne;
  * 
  */
 @Entity
-public class HpcJobTrack {
+public class HpcJobLog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,9 +35,16 @@ public class HpcJobTrack {
     @Column(name = "canceledTime")
     private Date canceledTime;
 
+    @Column(name = "lastUpdatedTime")
+    private Date lastUpdatedTime;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "hpcAccountId", nullable = false)
     private HpcAccount hpcAccount;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "hpcJobInfoId", nullable = false)
+    private HpcJobInfo hpcJobInfo;
 
     public Long getId() {
         return id;
@@ -71,12 +78,28 @@ public class HpcJobTrack {
         this.canceledTime = canceledTime;
     }
 
+    public Date getLastUpdatedTime() {
+        return lastUpdatedTime;
+    }
+
+    public void setLastUpdatedTime(Date lastUpdatedTime) {
+        this.lastUpdatedTime = lastUpdatedTime;
+    }
+
     public HpcAccount getHpcAccount() {
         return hpcAccount;
     }
 
     public void setHpcAccount(HpcAccount hpcAccount) {
         this.hpcAccount = hpcAccount;
+    }
+
+    public HpcJobInfo getHpcJobInfo() {
+        return hpcJobInfo;
+    }
+
+    public void setHpcJobInfo(HpcJobInfo hpcJobInfo) {
+        this.hpcJobInfo = hpcJobInfo;
     }
 
 }

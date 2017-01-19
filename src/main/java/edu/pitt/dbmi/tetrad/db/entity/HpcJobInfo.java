@@ -41,8 +41,8 @@ public class HpcJobInfo implements Serializable {
     @JoinColumn(name = "algorithmParamRequestId", nullable = false)
     private AlgorithmParamRequest algorithmParamRequest;
 
-    @Column(name = "addedTime", nullable = false)
-    private Date addedTime;
+    @Column(name = "submittedTime")
+    private Date submittedTime;
 
     @Column(name = "resultFileName")
     private String resultFileName;
@@ -53,8 +53,8 @@ public class HpcJobInfo implements Serializable {
     @Column(name = "errorResultFileName")
     private String errorResultFileName;
     
-    @Column(name = "status", nullable = false)
-    private int status;
+    @Column(name = "status")
+    private int status = -1;
     
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "hpcAccountId", nullable = false)
@@ -64,23 +64,23 @@ public class HpcJobInfo implements Serializable {
 	
     }
     
-    public HpcJobInfo(String algorithmName, Date addedTime,
+    public HpcJobInfo(String algorithmName, Date submittedTime,
 	    String resultFileName, String resultJsonFileName,
 	    String errorResultFileName, int status) {
 	this.algorithmName = algorithmName;
-	this.addedTime = addedTime;
+	this.submittedTime = submittedTime;
 	this.resultFileName = resultFileName;
 	this.resultJsonFileName = resultJsonFileName;
 	this.errorResultFileName = errorResultFileName;
 	this.status = status;
     }
 
-    public HpcJobInfo(Long pid, String algorithmName, Date addedTime,
+    public HpcJobInfo(Long pid, String algorithmName, Date submittedTime,
 	    String resultFileName, String resultJsonFileName,
 	    String errorResultFileName, int status) {
 	this.pid = pid;
 	this.algorithmName = algorithmName;
-	this.addedTime = addedTime;
+	this.submittedTime = submittedTime;
 	this.resultFileName = resultFileName;
 	this.resultJsonFileName = resultJsonFileName;
 	this.errorResultFileName = errorResultFileName;
@@ -119,12 +119,12 @@ public class HpcJobInfo implements Serializable {
         this.algorithmParamRequest = algorithmParamRequest;
     }
 
-    public Date getAddedTime() {
-        return addedTime;
+    public Date getSubmittedTime() {
+        return submittedTime;
     }
 
-    public void setAddedTime(Date addedTime) {
-        this.addedTime = addedTime;
+    public void setSubmittedTime(Date submittedTime) {
+        this.submittedTime = submittedTime;
     }
 
     public String getResultFileName() {

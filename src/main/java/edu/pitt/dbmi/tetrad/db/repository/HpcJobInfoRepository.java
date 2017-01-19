@@ -24,4 +24,6 @@ public interface HpcJobInfoRepository {
     
     public List<HpcJobInfo> findByHpcAccount(HpcAccount hpcAccount);
     
+    public List<HpcJobInfo> findByStatus(int status);
+    
 }

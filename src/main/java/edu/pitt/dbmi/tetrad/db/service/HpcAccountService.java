@@ -25,23 +25,23 @@ public class HpcAccountService implements HpcAccountRepository {
     }
     
     @Override
-    public void add(HpcAccount computingAccount) {
+    public void add(HpcAccount hpcAccount) {
 	Transaction transaction = session.beginTransaction();
-	session.save(computingAccount);
+	session.save(hpcAccount);
 	transaction.commit();
     }
 
     @Override
-    public void update(HpcAccount computingAccount) {
+    public void update(HpcAccount hpcAccount) {
 	Transaction transaction = session.beginTransaction();
-	session.saveOrUpdate(computingAccount);
+	session.saveOrUpdate(hpcAccount);
 	transaction.commit();
     }
 
     @Override
-    public void remove(HpcAccount computingAccount) {
+    public void remove(HpcAccount hpcAccount) {
 	Transaction transaction = session.beginTransaction();
-	session.delete(computingAccount);
+	session.delete(hpcAccount);
 	transaction.commit();
     }
 

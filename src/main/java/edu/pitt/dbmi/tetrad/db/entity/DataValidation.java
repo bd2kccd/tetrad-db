@@ -30,11 +30,14 @@ public class DataValidation implements Serializable {
     @OneToOne(fetch = FetchType.EAGER, mappedBy = "dataValidation")
     private AlgorithmParamRequest algorithmParamRequest;
     
-    @Column(name = "nonZeroVariance", nullable = false)
-    private boolean nonZeroVariance;
-    
     @Column(name = "uniqueVarName", nullable = false)
     private boolean uniqueVarName;
+
+    @Column(name = "nonZeroVariance")
+    private boolean nonZeroVariance;
+    
+    @Column(name = "categoryLimit")
+    private boolean categoryLimit;
 
     public Long getId() {
         return id;
@@ -52,6 +55,14 @@ public class DataValidation implements Serializable {
         this.algorithmParamRequest = algorithmParamRequest;
     }
 
+    public boolean isUniqueVarName() {
+        return uniqueVarName;
+    }
+
+    public void setUniqueVarName(boolean uniqueVarName) {
+        this.uniqueVarName = uniqueVarName;
+    }
+
     public boolean isNonZeroVariance() {
         return nonZeroVariance;
     }
@@ -60,12 +71,13 @@ public class DataValidation implements Serializable {
         this.nonZeroVariance = nonZeroVariance;
     }
 
-    public boolean isUniqueVarName() {
-        return uniqueVarName;
+    public boolean isCategoryLimit() {
+        return categoryLimit;
     }
 
-    public void setUniqueVarName(boolean uniqueVarName) {
-        this.uniqueVarName = uniqueVarName;
+    public void setCategoryLimit(boolean categoryLimit) {
+        this.categoryLimit = categoryLimit;
     }
+
     
 }
