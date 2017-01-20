@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import edu.pitt.dbmi.tetrad.db.entity.AlgorithmParamRequest;
 import edu.pitt.dbmi.tetrad.db.entity.AlgorithmParameter;
@@ -27,17 +28,23 @@ public class AlgorithmParameterService implements
     
     @Override
     public void add(AlgorithmParameter algorithmParameters) {
+	Transaction transaction = session.beginTransaction();
 	session.save(algorithmParameters);
+	transaction.commit();
     }
 
     @Override
     public void update(AlgorithmParameter algorithmParameters) {
+	Transaction transaction = session.beginTransaction();
 	session.saveOrUpdate(algorithmParameters);
+	transaction.commit();
     }
 
     @Override
     public void remove(AlgorithmParameter algorithmParameters) {
+	Transaction transaction = session.beginTransaction();
 	session.delete(algorithmParameters);
+	transaction.commit();
     }
 
     @Override

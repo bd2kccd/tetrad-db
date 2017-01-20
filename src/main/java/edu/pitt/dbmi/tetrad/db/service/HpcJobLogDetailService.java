@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import edu.pitt.dbmi.tetrad.db.entity.HpcJobLog;
 import edu.pitt.dbmi.tetrad.db.entity.HpcJobLogDetail;
@@ -26,17 +27,23 @@ public class HpcJobLogDetailService implements HpcJobLogDetailRepository {
     
     @Override
     public void add(HpcJobLogDetail hpcJobLogDetail) {
+	Transaction transaction = session.beginTransaction();
 	session.save(hpcJobLogDetail);
+	transaction.commit();
     }
 
     @Override
     public void update(HpcJobLogDetail hpcJobLogDetail) {
+	Transaction transaction = session.beginTransaction();
 	session.saveOrUpdate(hpcJobLogDetail);
+	transaction.commit();
     }
 
     @Override
     public void remove(HpcJobLogDetail hpcJobLogDetail) {
+	Transaction transaction = session.beginTransaction();
 	session.delete(hpcJobLogDetail);
+	transaction.commit();
     }
 
     @Override

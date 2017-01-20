@@ -2,6 +2,7 @@ package edu.pitt.dbmi.tetrad.db.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  * 
@@ -38,11 +40,7 @@ public class HpcJobLog {
     @Column(name = "lastUpdatedTime")
     private Date lastUpdatedTime;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "hpcAccountId", nullable = false)
-    private HpcAccount hpcAccount;
-
-    @ManyToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "hpcJobInfoId", nullable = false)
     private HpcJobInfo hpcJobInfo;
 
@@ -84,14 +82,6 @@ public class HpcJobLog {
 
     public void setLastUpdatedTime(Date lastUpdatedTime) {
         this.lastUpdatedTime = lastUpdatedTime;
-    }
-
-    public HpcAccount getHpcAccount() {
-        return hpcAccount;
-    }
-
-    public void setHpcAccount(HpcAccount hpcAccount) {
-        this.hpcAccount = hpcAccount;
     }
 
     public HpcJobInfo getHpcJobInfo() {

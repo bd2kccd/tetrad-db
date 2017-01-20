@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import edu.pitt.dbmi.tetrad.db.entity.AlgorithmParamRequest;
 import edu.pitt.dbmi.tetrad.db.entity.JvmOption;
@@ -26,17 +27,23 @@ public class JvmOptionService implements JvmOptionRepository {
 
     @Override
     public void add(JvmOption jvmOptions) {
+	Transaction transaction = session.beginTransaction();
 	session.save(jvmOptions);
+	transaction.commit();
     }
 
     @Override
     public void update(JvmOption jvmOptions) {
+	Transaction transaction = session.beginTransaction();
 	session.saveOrUpdate(jvmOptions);
+	transaction.commit();
     }
 
     @Override
     public void remove(JvmOption jvmOptions) {
+	Transaction transaction = session.beginTransaction();
 	session.delete(jvmOptions);
+	transaction.commit();
     }
 
     @Override

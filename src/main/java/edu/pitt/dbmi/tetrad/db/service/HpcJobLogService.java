@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import edu.pitt.dbmi.tetrad.db.entity.HpcAccount;
 import edu.pitt.dbmi.tetrad.db.entity.HpcJobInfo;
@@ -22,22 +23,30 @@ public class HpcJobLogService implements HpcJobLogRepository {
     private final Session session;
     
     public HpcJobLogService(final Session session){
+	Transaction transaction = session.beginTransaction();
 	this.session = session;
+	transaction.commit();
     }
     
     @Override
     public void add(HpcJobLog hpcJobLog) {
+	Transaction transaction = session.beginTransaction();
 	session.save(hpcJobLog);
+	transaction.commit();
     }
 
     @Override
     public void update(HpcJobLog hpcJobLog) {
+	Transaction transaction = session.beginTransaction();
 	session.saveOrUpdate(hpcJobLog);
+	transaction.commit();
     }
 
     @Override
     public void remove(HpcJobLog hpcJobLog) {
+	Transaction transaction = session.beginTransaction();
 	session.delete(hpcJobLog);
+	transaction.commit();
     }
 
     @Override
@@ -46,10 +55,12 @@ public class HpcJobLogService implements HpcJobLogRepository {
     }
 
     @Override
-    public List<HpcJobLog> findByHpcJobInfo(HpcJobInfo hpcJobInfo) {
+    public HpcJobLog findByHpcJobInfo(HpcJobInfo hpcJobInfo) {
 	Query query = session.createQuery("FROM HpcJobLog WHERE hpcJobInfoId = ?");
 	query.setLong(0, hpcJobInfo.getId());
-	return query.list();
+	List result = query.list();
+	if(result.isEmpty())return null;
+	return (HpcJobLog)query.list().get(0);
     }
 
     @Override

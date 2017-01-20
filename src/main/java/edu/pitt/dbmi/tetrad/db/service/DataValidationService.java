@@ -1,6 +1,7 @@
 package edu.pitt.dbmi.tetrad.db.service;
 
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import edu.pitt.dbmi.tetrad.db.entity.DataValidation;
 import edu.pitt.dbmi.tetrad.db.repository.DataValidationRepository;
@@ -22,12 +23,16 @@ public class DataValidationService implements DataValidationRepository {
     
     @Override
     public void add(DataValidation dataValidation) {
+	Transaction transaction = session.beginTransaction();
 	session.save(dataValidation);
+	transaction.commit();
     }
 
     @Override
     public void update(DataValidation dataValidation) {
+	Transaction transaction = session.beginTransaction();
 	session.saveOrUpdate(dataValidation);
+	transaction.commit();
     }
 
     @Override
@@ -37,7 +42,9 @@ public class DataValidationService implements DataValidationRepository {
 
     @Override
     public void remove(DataValidation dataValidation) {
+	Transaction transaction = session.beginTransaction();
 	session.delete(dataValidation);
+	transaction.commit();
     }
 
 }

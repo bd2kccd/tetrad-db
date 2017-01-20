@@ -23,7 +23,7 @@ public interface HpcJobLogRepository {
  
     public HpcJobLog findById(long id);
     
-    public List<HpcJobLog> findByHpcJobInfo(HpcJobInfo hpcJobInfo);
+    public HpcJobLog findByHpcJobInfo(HpcJobInfo hpcJobInfo);
     
     public List<HpcJobLog> findByHpcAccount(HpcAccount hpcAccount);
     

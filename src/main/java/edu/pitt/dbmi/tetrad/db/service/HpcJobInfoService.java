@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import edu.pitt.dbmi.tetrad.db.entity.AlgorithmParamRequest;
 import edu.pitt.dbmi.tetrad.db.entity.AlgorithmParameter;
@@ -30,24 +31,28 @@ public class HpcJobInfoService implements HpcJobInfoRepository {
     
     @Override
     public void add(HpcJobInfo hpcJobInfo) {
+	Transaction transaction = session.beginTransaction();
 	AlgorithmParamRequest algorithmParamRequest = hpcJobInfo.getAlgorithmParamRequest();
 	List<AlgorithmParameter> algorithmParameters = algorithmParamRequest.getAlgorithmParameters();
 	for(AlgorithmParameter algorithmParameter: algorithmParameters){
-	    System.out.println(algorithmParameter.getParameter() + ":" + algorithmParameter.getValue());
+	    System.out.println("HpcJobInfoService: add: AlgorithmParameter: " + algorithmParameter.getParameter() + ":" + algorithmParameter.getValue());
 	    session.save(algorithmParameter);
 	}
 	DataValidation dataValidation = algorithmParamRequest.getDataValidation();
 	session.save(dataValidation);
 	List<JvmOption> jvmOptions = algorithmParamRequest.getJvmOptions();
 	for(JvmOption jvmOption: jvmOptions){
+	    System.out.println("HpcJobInfoService: add: JvmOption: " + jvmOption.getParameter() + ":" + jvmOption.getValue());
 	    session.save(jvmOption);
 	}
 	session.save(algorithmParamRequest);
 	session.save(hpcJobInfo);
+	transaction.commit();
     }
 
     @Override
     public void update(HpcJobInfo hpcJobInfo) {
+	Transaction transaction = session.beginTransaction();
 	AlgorithmParamRequest algorithmParamRequest = hpcJobInfo.getAlgorithmParamRequest();
 	List<AlgorithmParameter> algorithmParameters = algorithmParamRequest.getAlgorithmParameters();
 	for(AlgorithmParameter algorithmParameter: algorithmParameters){
@@ -61,11 +66,14 @@ public class HpcJobInfoService implements HpcJobInfoRepository {
 	}
 	session.saveOrUpdate(algorithmParamRequest);
 	session.saveOrUpdate(hpcJobInfo);
+	transaction.commit();
     }
 
     @Override
     public void remove(HpcJobInfo hpcJobInfo) {
+	Transaction transaction = session.beginTransaction();
 	session.delete(hpcJobInfo);
+	transaction.commit();
     }
 
     @Override

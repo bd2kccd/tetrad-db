@@ -1,6 +1,7 @@
 package edu.pitt.dbmi.tetrad.db.service;
 
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import edu.pitt.dbmi.tetrad.db.entity.AlgorithmParamRequest;
 import edu.pitt.dbmi.tetrad.db.repository.AlgorithmParamRequestRepository;
@@ -22,17 +23,23 @@ public class AlgorithmParamRequestService implements AlgorithmParamRequestReposi
     
     @Override
     public void add(AlgorithmParamRequest algorithmParamRequest) {
+	Transaction transaction = session.beginTransaction();
 	session.save(algorithmParamRequest);
+	transaction.commit();
     }
 
     @Override
     public void update(AlgorithmParamRequest algorithmParamRequest) {
+	Transaction transaction = session.beginTransaction();
 	session.saveOrUpdate(algorithmParamRequest);
+	transaction.commit();
     }
 
     @Override
     public void remove(AlgorithmParamRequest algorithmParamRequest) {
+	Transaction transaction = session.beginTransaction();
 	session.delete(algorithmParamRequest);
+	transaction.commit();
     }
 
     @Override
