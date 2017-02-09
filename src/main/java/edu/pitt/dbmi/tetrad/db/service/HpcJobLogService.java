@@ -56,6 +56,7 @@ public class HpcJobLogService implements HpcJobLogRepository {
 
     @Override
     public HpcJobLog findByHpcJobInfo(HpcJobInfo hpcJobInfo) {
+	if(hpcJobInfo == null)return null;
 	Query query = session.createQuery("FROM HpcJobLog WHERE hpcJobInfoId = ?");
 	query.setLong(0, hpcJobInfo.getId());
 	List result = query.list();
@@ -65,6 +66,7 @@ public class HpcJobLogService implements HpcJobLogRepository {
 
     @Override
     public List<HpcJobLog> findByHpcAccount(HpcAccount hpcAccount) {
+	if(hpcAccount == null)return null;
 	Query query = session.createQuery("FROM HpcJobLog WHERE hpcAccountId = ?");
 	query.setLong(0, hpcAccount.getId());
 	return query.list();

@@ -35,8 +35,14 @@ public class AlgorithmParamRequest implements Serializable {
     @Column(name = "datasetPath", nullable = false)
     private String datasetPath;
     
+    @Column(name = "datasetMd5", nullable = false)
+    private String datasetMd5;
+    
     @Column(name = "priorKnowledgePath")
     private String priorKnowledgePath = null;
+    
+    @Column(name = "priorKnowledgeMd5")
+    private String priorKnowledgeMd5 = null;
     
     @Column(name = "variableType", nullable = false)
     private String variableType;
@@ -70,12 +76,28 @@ public class AlgorithmParamRequest implements Serializable {
         this.datasetPath = datasetPath;
     }
 
+    public String getDatasetMd5() {
+        return datasetMd5;
+    }
+
+    public void setDatasetMd5(String datasetMd5) {
+        this.datasetMd5 = datasetMd5;
+    }
+
     public String getPriorKnowledgePath() {
         return priorKnowledgePath;
     }
 
     public void setPriorKnowledgePath(String priorKnowledgePath) {
         this.priorKnowledgePath = priorKnowledgePath;
+    }
+
+    public String getPriorKnowledgeMd5() {
+        return priorKnowledgeMd5;
+    }
+
+    public void setPriorKnowledgeMd5(String priorKnowledgeMd5) {
+        this.priorKnowledgeMd5 = priorKnowledgeMd5;
     }
 
     public String getVariableType() {
