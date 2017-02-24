@@ -2,7 +2,9 @@ package edu.pitt.dbmi.tetrad.db.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,6 +14,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -59,6 +63,12 @@ public class AlgorithmParamRequest implements Serializable {
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "algorithmParamRequest")
     List<JvmOption> jvmOptions = new ArrayList<>();
+    
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "hpcParameterAlgorParamRel", joinColumns = {
+        @JoinColumn(name = "algorParamReqId", nullable = false, updatable = false)}, inverseJoinColumns = {
+        @JoinColumn(name = "hpcParameterId", nullable = false, updatable = false)})
+    private Set<HpcParameter> hpcParameters = new HashSet<>(0);
     
     public Long getId() {
         return id;
@@ -147,6 +157,14 @@ public class AlgorithmParamRequest implements Serializable {
 	    }
 	}
     }
+
+	public Set<HpcParameter> getHpcParameters() {
+		return hpcParameters;
+	}
+
+	public void setHpcParameters(Set<HpcParameter> hpcParameters) {
+		this.hpcParameters = hpcParameters;
+	}
     
     
 }
