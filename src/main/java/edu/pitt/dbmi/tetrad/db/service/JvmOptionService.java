@@ -26,23 +26,23 @@ public class JvmOptionService implements JvmOptionRepository {
 	}
 
 	@Override
-	public void add(JvmOption jvmOptions) {
+	public void add(JvmOption jvmOption) {
 		Transaction transaction = session.beginTransaction();
-		session.save(jvmOptions);
+		session.save(jvmOption);
 		transaction.commit();
 	}
 
 	@Override
-	public void update(JvmOption jvmOptions) {
+	public void update(JvmOption jvmOption) {
 		Transaction transaction = session.beginTransaction();
-		session.saveOrUpdate(jvmOptions);
+		session.saveOrUpdate(jvmOption);
 		transaction.commit();
 	}
 
 	@Override
-	public void remove(JvmOption jvmOptions) {
+	public void remove(JvmOption jvmOption) {
 		Transaction transaction = session.beginTransaction();
-		session.delete(jvmOptions);
+		session.delete(jvmOption);
 		transaction.commit();
 	}
 

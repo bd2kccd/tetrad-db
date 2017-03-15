@@ -18,51 +18,52 @@ import edu.pitt.dbmi.tetrad.db.repository.HpcAccountRepository;
  */
 public class HpcAccountService implements HpcAccountRepository {
 
-    private final Session session;
-    
-    public HpcAccountService(final Session session) {
-	this.session = session;
-    }
-    
-    @Override
-    public void add(HpcAccount hpcAccount) {
-	Transaction transaction = session.beginTransaction();
-	session.save(hpcAccount);
-	transaction.commit();
-    }
+	private final Session session;
 
-    @Override
-    public void update(HpcAccount hpcAccount) {
-	Transaction transaction = session.beginTransaction();
-	session.saveOrUpdate(hpcAccount);
-	transaction.commit();
-    }
+	public HpcAccountService(final Session session) {
+		this.session = session;
+	}
 
-    @Override
-    public void remove(HpcAccount hpcAccount) {
-	Transaction transaction = session.beginTransaction();
-	session.delete(hpcAccount);
-	transaction.commit();
-    }
+	@Override
+	public void add(HpcAccount hpcAccount) {
+		Transaction transaction = session.beginTransaction();
+		session.save(hpcAccount);
+		transaction.commit();
+	}
 
-    @Override
-    public HpcAccount findByConnectionName(String connectionName) {
-	Query query = session.createQuery("FROM HpcAccount WHERE connectionName = ?");
-	query.setString(0, connectionName);
-	List result = query.list();
-	if(result.isEmpty())return null;
-	return (HpcAccount)query.list().get(0);
-    }
+	@Override
+	public void update(HpcAccount hpcAccount) {
+		Transaction transaction = session.beginTransaction();
+		session.saveOrUpdate(hpcAccount);
+		transaction.commit();
+	}
 
-    @Override
-    public HpcAccount findById(long id) {
-	return session.load(HpcAccount.class, id);
-    }
+	@Override
+	public void remove(HpcAccount hpcAccount) {
+		Transaction transaction = session.beginTransaction();
+		session.delete(hpcAccount);
+		transaction.commit();
+	}
 
-    @Override
-    public List<HpcAccount> get() {
-	Query query = session.createQuery("FROM HpcAccount");
-	return query.list();
-    }
+	@Override
+	public HpcAccount findByConnectionName(String connectionName) {
+		Query query = session.createQuery("FROM HpcAccount WHERE connectionName = ?");
+		query.setString(0, connectionName);
+		List result = query.list();
+		if (result.isEmpty())
+			return null;
+		return (HpcAccount) query.list().get(0);
+	}
+
+	@Override
+	public HpcAccount findById(long id) {
+		return session.load(HpcAccount.class, id);
+	}
+
+	@Override
+	public List<HpcAccount> get() {
+		Query query = session.createQuery("FROM HpcAccount");
+		return query.list();
+	}
 
 }

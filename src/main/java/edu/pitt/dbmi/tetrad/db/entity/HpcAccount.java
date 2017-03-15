@@ -21,123 +21,123 @@ import javax.persistence.TemporalType;
 @Entity
 public class HpcAccount implements Serializable {
 
-    private static final long serialVersionUID = -3821022006234039451L;
+	private static final long serialVersionUID = -3821022006234039451L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, unique = true)
-    private Long id;
-    
-    @Column(name = "connectionName", unique = true, nullable = false)
-    private String connectionName;
-    
-    @Column(name = "username", nullable = false)
-    private String username;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false, unique = true)
+	private Long id;
 
-    @Column(name = "password", nullable = false)
-    private String password;
+	@Column(name = "connectionName", unique = true, nullable = false)
+	private String connectionName;
 
-    @Column(name = "scheme", nullable = false)
-    private String scheme;
-    
-    @Column(name = "hostname", nullable = false)
-    private String hostname;
-    
-    @Column(name = "port", nullable = false)
-    private int port;
-    
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "createdDate", nullable = false, length = 19)
-    private Date createdDate;
+	@Column(name = "username", nullable = false)
+	private String username;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "lastLoginDate", length = 19)
-    private Date lastLoginDate;
+	@Column(name = "password", nullable = false)
+	private String password;
 
-    public HpcAccount() {
-	connectionName = "";
-	username = "";
-	password = "";
-	scheme = "http";
-	hostname = "";
-	port = 0;
-	createdDate = new Date();
-    }
-    
-    public Long getId() {
-        return id;
-    }
+	@Column(name = "scheme", nullable = false)
+	private String scheme;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	@Column(name = "hostname", nullable = false)
+	private String hostname;
 
-    public String getConnectionName() {
-        return connectionName;
-    }
+	@Column(name = "port", nullable = false)
+	private int port;
 
-    public void setConnectionName(String connectionName) {
-        this.connectionName = connectionName;
-    }
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "createdDate", nullable = false, length = 19)
+	private Date createdDate;
 
-    public String getUsername() {
-        return username;
-    }
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "lastLoginDate", length = 19)
+	private Date lastLoginDate;
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+	public HpcAccount() {
+		connectionName = "";
+		username = "";
+		password = "";
+		scheme = "http";
+		hostname = "";
+		port = 0;
+		createdDate = new Date(System.currentTimeMillis());
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getScheme() {
-        return scheme;
-    }
+	public String getConnectionName() {
+		return connectionName;
+	}
 
-    public void setScheme(String scheme) {
-        this.scheme = scheme;
-    }
+	public void setConnectionName(String connectionName) {
+		this.connectionName = connectionName;
+	}
 
-    public String getHostname() {
-        return hostname;
-    }
+	public String getUsername() {
+		return username;
+	}
 
-    public void setHostname(String hostname) {
-        this.hostname = hostname;
-    }
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-    public int getPort() {
-        return port;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public void setPort(int port) {
-        this.port = port;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    public Date getCreatedDate() {
-        return createdDate;
-    }
+	public String getScheme() {
+		return scheme;
+	}
 
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
+	public void setScheme(String scheme) {
+		this.scheme = scheme;
+	}
 
-    public Date getLastLoginDate() {
-        return lastLoginDate;
-    }
+	public String getHostname() {
+		return hostname;
+	}
 
-    public void setLastLoginDate(Date lastLoginDate) {
-        this.lastLoginDate = lastLoginDate;
-    }
-    
-    public String toString() {
-	return connectionName;
-    }
+	public void setHostname(String hostname) {
+		this.hostname = hostname;
+	}
+
+	public int getPort() {
+		return port;
+	}
+
+	public void setPort(int port) {
+		this.port = port;
+	}
+
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public Date getLastLoginDate() {
+		return lastLoginDate;
+	}
+
+	public void setLastLoginDate(Date lastLoginDate) {
+		this.lastLoginDate = lastLoginDate;
+	}
+
+	public String toString() {
+		return connectionName;
+	}
 
 }

@@ -22,73 +22,73 @@ import javax.persistence.OneToOne;
 @Entity
 public class HpcJobLog {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
-    private Long id;
-    
-    @Column(name = "addedTime", nullable = false)
-    private Date addedTime;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", unique = true, nullable = false)
+	private Long id;
 
-    @Column(name = "endedTime")
-    private Date endedTime;
+	@Column(name = "addedTime", nullable = false)
+	private Date addedTime;
 
-    @Column(name = "canceledTime")
-    private Date canceledTime;
+	@Column(name = "endedTime")
+	private Date endedTime;
 
-    @Column(name = "lastUpdatedTime")
-    private Date lastUpdatedTime;
+	@Column(name = "canceledTime")
+	private Date canceledTime;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "hpcJobInfoId", nullable = false)
-    private HpcJobInfo hpcJobInfo;
+	@Column(name = "lastUpdatedTime")
+	private Date lastUpdatedTime;
 
-    public Long getId() {
-        return id;
-    }
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "hpcJobInfoId", nullable = false)
+	private HpcJobInfo hpcJobInfo;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public Date getAddedTime() {
-        return addedTime;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setAddedTime(Date addedTime) {
-        this.addedTime = addedTime;
-    }
+	public Date getAddedTime() {
+		return addedTime;
+	}
 
-    public Date getEndedTime() {
-        return endedTime;
-    }
+	public void setAddedTime(Date addedTime) {
+		this.addedTime = addedTime;
+	}
 
-    public void setEndedTime(Date endedTime) {
-        this.endedTime = endedTime;
-    }
+	public Date getEndedTime() {
+		return endedTime;
+	}
 
-    public Date getCanceledTime() {
-        return canceledTime;
-    }
+	public void setEndedTime(Date endedTime) {
+		this.endedTime = endedTime;
+	}
 
-    public void setCanceledTime(Date canceledTime) {
-        this.canceledTime = canceledTime;
-    }
+	public Date getCanceledTime() {
+		return canceledTime;
+	}
 
-    public Date getLastUpdatedTime() {
-        return lastUpdatedTime;
-    }
+	public void setCanceledTime(Date canceledTime) {
+		this.canceledTime = canceledTime;
+	}
 
-    public void setLastUpdatedTime(Date lastUpdatedTime) {
-        this.lastUpdatedTime = lastUpdatedTime;
-    }
+	public Date getLastUpdatedTime() {
+		return lastUpdatedTime;
+	}
 
-    public HpcJobInfo getHpcJobInfo() {
-        return hpcJobInfo;
-    }
+	public void setLastUpdatedTime(Date lastUpdatedTime) {
+		this.lastUpdatedTime = lastUpdatedTime;
+	}
 
-    public void setHpcJobInfo(HpcJobInfo hpcJobInfo) {
-        this.hpcJobInfo = hpcJobInfo;
-    }
+	public HpcJobInfo getHpcJobInfo() {
+		return hpcJobInfo;
+	}
+
+	public void setHpcJobInfo(HpcJobInfo hpcJobInfo) {
+		this.hpcJobInfo = hpcJobInfo;
+	}
 
 }

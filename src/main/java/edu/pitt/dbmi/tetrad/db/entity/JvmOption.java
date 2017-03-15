@@ -21,54 +21,53 @@ import javax.persistence.ManyToOne;
 @Entity
 public class JvmOption implements Serializable {
 
-    private static final long serialVersionUID = 496329543903669880L;
+	private static final long serialVersionUID = 496329543903669880L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", unique = true, nullable = false)
+	private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "algorithmParamRequestId")
-    private AlgorithmParamRequest algorithmParamRequest;
-    
-    @Column(name = "parameter", nullable = false)
-    private String parameter;
-    
-    @Column(name = "value", nullable = false)
-    private String value;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "algorithmParamRequestId")
+	private AlgorithmParamRequest algorithmParamRequest;
 
-    public Long getId() {
-        return id;
-    }
+	@Column(name = "parameter", nullable = false)
+	private String parameter;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	@Column(name = "value", nullable = false)
+	private String value;
 
-    public AlgorithmParamRequest getAlgorithmParamRequest() {
-        return algorithmParamRequest;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setAlgorithmParamRequest(AlgorithmParamRequest algorithmParamRequest) {
-        this.algorithmParamRequest = algorithmParamRequest;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getParameter() {
-        return parameter;
-    }
+	public AlgorithmParamRequest getAlgorithmParamRequest() {
+		return algorithmParamRequest;
+	}
 
-    public void setParameter(String parameter) {
-        this.parameter = parameter;
-    }
+	public void setAlgorithmParamRequest(AlgorithmParamRequest algorithmParamRequest) {
+		this.algorithmParamRequest = algorithmParamRequest;
+	}
 
-    public String getValue() {
-        return value;
-    }
+	public String getParameter() {
+		return parameter;
+	}
 
-    public void setValue(String value) {
-        this.value = value;
-    }
+	public void setParameter(String parameter) {
+		this.parameter = parameter;
+	}
 
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
+	}
 
 }

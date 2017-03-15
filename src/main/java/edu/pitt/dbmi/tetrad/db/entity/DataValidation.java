@@ -20,64 +20,63 @@ import javax.persistence.OneToOne;
 @Entity
 public class DataValidation implements Serializable {
 
-    private static final long serialVersionUID = 8674106444920091695L;
+	private static final long serialVersionUID = 8674106444920091695L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
-    private Long id;
-    
-    @OneToOne(fetch = FetchType.EAGER, mappedBy = "dataValidation")
-    private AlgorithmParamRequest algorithmParamRequest;
-    
-    @Column(name = "uniqueVarName", nullable = false)
-    private boolean uniqueVarName;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", unique = true, nullable = false)
+	private Long id;
 
-    @Column(name = "nonZeroVariance")
-    private boolean nonZeroVariance;
-    
-    @Column(name = "categoryLimit")
-    private boolean categoryLimit;
+	@OneToOne(fetch = FetchType.EAGER, mappedBy = "dataValidation")
+	private AlgorithmParamRequest algorithmParamRequest;
 
-    public Long getId() {
-        return id;
-    }
+	@Column(name = "uniqueVarName", nullable = false)
+	private boolean uniqueVarName;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	@Column(name = "nonZeroVariance")
+	private boolean nonZeroVariance;
 
-    public AlgorithmParamRequest getAlgorithmParamRequest() {
-        return algorithmParamRequest;
-    }
+	@Column(name = "categoryLimit")
+	private boolean categoryLimit;
 
-    public void setAlgorithmParamRequest(AlgorithmParamRequest algorithmParamRequest) {
-        this.algorithmParamRequest = algorithmParamRequest;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public boolean isUniqueVarName() {
-        return uniqueVarName;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setUniqueVarName(boolean uniqueVarName) {
-        this.uniqueVarName = uniqueVarName;
-    }
+	public AlgorithmParamRequest getAlgorithmParamRequest() {
+		return algorithmParamRequest;
+	}
 
-    public boolean isNonZeroVariance() {
-        return nonZeroVariance;
-    }
+	public void setAlgorithmParamRequest(AlgorithmParamRequest algorithmParamRequest) {
+		this.algorithmParamRequest = algorithmParamRequest;
+	}
 
-    public void setNonZeroVariance(boolean nonZeroVariance) {
-        this.nonZeroVariance = nonZeroVariance;
-    }
+	public boolean isUniqueVarName() {
+		return uniqueVarName;
+	}
 
-    public boolean isCategoryLimit() {
-        return categoryLimit;
-    }
+	public void setUniqueVarName(boolean uniqueVarName) {
+		this.uniqueVarName = uniqueVarName;
+	}
 
-    public void setCategoryLimit(boolean categoryLimit) {
-        this.categoryLimit = categoryLimit;
-    }
+	public boolean isNonZeroVariance() {
+		return nonZeroVariance;
+	}
 
-    
+	public void setNonZeroVariance(boolean nonZeroVariance) {
+		this.nonZeroVariance = nonZeroVariance;
+	}
+
+	public boolean isCategoryLimit() {
+		return categoryLimit;
+	}
+
+	public void setCategoryLimit(boolean categoryLimit) {
+		this.categoryLimit = categoryLimit;
+	}
+
 }

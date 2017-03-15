@@ -17,47 +17,45 @@ import edu.pitt.dbmi.tetrad.db.repository.AlgorithmParameterRepository;
  * @author Chirayu (Kong) Wongchokprasitti, PhD
  * 
  */
-public class AlgorithmParameterService implements
-	AlgorithmParameterRepository {
+public class AlgorithmParameterService implements AlgorithmParameterRepository {
 
-    private final Session session;
-    
-    public AlgorithmParameterService(final Session session) {
-	this.session = session;
-    }
-    
-    @Override
-    public void add(AlgorithmParameter algorithmParameters) {
-	Transaction transaction = session.beginTransaction();
-	session.save(algorithmParameters);
-	transaction.commit();
-    }
+	private final Session session;
 
-    @Override
-    public void update(AlgorithmParameter algorithmParameters) {
-	Transaction transaction = session.beginTransaction();
-	session.saveOrUpdate(algorithmParameters);
-	transaction.commit();
-    }
+	public AlgorithmParameterService(final Session session) {
+		this.session = session;
+	}
 
-    @Override
-    public void remove(AlgorithmParameter algorithmParameters) {
-	Transaction transaction = session.beginTransaction();
-	session.delete(algorithmParameters);
-	transaction.commit();
-    }
+	@Override
+	public void add(AlgorithmParameter algorithmParameter) {
+		Transaction transaction = session.beginTransaction();
+		session.save(algorithmParameter);
+		transaction.commit();
+	}
 
-    @Override
-    public AlgorithmParameter findById(long id) {
-	return session.load(AlgorithmParameter.class, id);
-    }
+	@Override
+	public void update(AlgorithmParameter algorithmParameter) {
+		Transaction transaction = session.beginTransaction();
+		session.saveOrUpdate(algorithmParameter);
+		transaction.commit();
+	}
 
-    @Override
-    public List<AlgorithmParameter> findByalgorithmParamRequest(
-	    AlgorithmParamRequest algorithmParamRequest) {
-	Query query = session.createQuery("FROM AlgorithmParameters WHERE algorithmParamRequestId = ?");
-	query.setLong(0, algorithmParamRequest.getId());
-	return query.list();
-    }
+	@Override
+	public void remove(AlgorithmParameter algorithmParameter) {
+		Transaction transaction = session.beginTransaction();
+		session.delete(algorithmParameter);
+		transaction.commit();
+	}
+
+	@Override
+	public AlgorithmParameter findById(long id) {
+		return session.load(AlgorithmParameter.class, id);
+	}
+
+	@Override
+	public List<AlgorithmParameter> findByalgorithmParamRequest(AlgorithmParamRequest algorithmParamRequest) {
+		Query query = session.createQuery("FROM AlgorithmParameters WHERE algorithmParamRequestId = ?");
+		query.setLong(0, algorithmParamRequest.getId());
+		return query.list();
+	}
 
 }

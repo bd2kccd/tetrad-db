@@ -21,63 +21,62 @@ import javax.persistence.ManyToOne;
 @Entity
 public class HpcJobLogDetail {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", unique = true, nullable = false)
+	private Long id;
 
-    @Column(name = "jobState", nullable = false)
-    private int jobState = -1; // -1 = Pending; 0 = Submitted;
-    
-    @Column(name = "progress")
-    private String progress;
+	@Column(name = "jobState", nullable = false)
+	private int jobState = -1; // -1 = Pending; 0 = Submitted;
 
-    @Column(name = "addedTime", nullable = false)
-    private Date addedTime;
+	@Column(name = "progress")
+	private String progress;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "hpcJobLogId", nullable = false)
-    private HpcJobLog hpcJobLog;
+	@Column(name = "addedTime", nullable = false)
+	private Date addedTime;
 
-    public Long getId() {
-        return id;
-    }
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "hpcJobLogId", nullable = false)
+	private HpcJobLog hpcJobLog;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public int getJobState() {
-        return jobState;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setJobState(int jobState) {
-        this.jobState = jobState;
-    }
+	public int getJobState() {
+		return jobState;
+	}
 
-    public String getProgress() {
-        return progress;
-    }
+	public void setJobState(int jobState) {
+		this.jobState = jobState;
+	}
 
-    public void setProgress(String progress) {
-        this.progress = progress;
-    }
+	public String getProgress() {
+		return progress;
+	}
 
-    public Date getAddedTime() {
-        return addedTime;
-    }
+	public void setProgress(String progress) {
+		this.progress = progress;
+	}
 
-    public void setAddedTime(Date addedTime) {
-        this.addedTime = addedTime;
-    }
+	public Date getAddedTime() {
+		return addedTime;
+	}
 
-    public HpcJobLog getHpcJobLog() {
-        return hpcJobLog;
-    }
+	public void setAddedTime(Date addedTime) {
+		this.addedTime = addedTime;
+	}
 
-    public void setHpcJobLog(HpcJobLog hpcJobLog) {
-        this.hpcJobLog = hpcJobLog;
-    }
+	public HpcJobLog getHpcJobLog() {
+		return hpcJobLog;
+	}
 
+	public void setHpcJobLog(HpcJobLog hpcJobLog) {
+		this.hpcJobLog = hpcJobLog;
+	}
 
 }

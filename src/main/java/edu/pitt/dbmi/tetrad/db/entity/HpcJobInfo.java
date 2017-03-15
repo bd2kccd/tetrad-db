@@ -24,147 +24,145 @@ import javax.persistence.OneToOne;
 @Entity
 public class HpcJobInfo implements Serializable {
 
-    private static final long serialVersionUID = -3402084901576572432L;
+	private static final long serialVersionUID = -3402084901576572432L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
-    private Long id;
-    
-    @Column(name = "pid")
-    private Long pid;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", unique = true, nullable = false)
+	private Long id;
 
-    @Column(name = "algorithmName", nullable = false)
-    private String algorithmName;
-    
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "algorithmParamRequestId", nullable = false)
-    private AlgorithmParamRequest algorithmParamRequest;
+	@Column(name = "pid")
+	private Long pid;
 
-    @Column(name = "submittedTime")
-    private Date submittedTime;
+	@Column(name = "algorithmName", nullable = false)
+	private String algorithmName;
 
-    @Column(name = "resultFileName")
-    private String resultFileName;
-    
-    @Column(name = "resultJsonFileName")
-    private String resultJsonFileName;
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "algorithmParamRequestId", nullable = false)
+	private AlgorithmParamRequest algorithmParamRequest;
 
-    @Column(name = "errorResultFileName")
-    private String errorResultFileName;
-    
-    @Column(name = "status")
-    private int status = -1;
-    
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "hpcAccountId", nullable = false)
-    private HpcAccount hpcAccount;
+	@Column(name = "submittedTime")
+	private Date submittedTime;
 
-    public HpcJobInfo() {
-	
-    }
-    
-    public HpcJobInfo(String algorithmName, Date submittedTime,
-	    String resultFileName, String resultJsonFileName,
-	    String errorResultFileName, int status) {
-	this.algorithmName = algorithmName;
-	this.submittedTime = submittedTime;
-	this.resultFileName = resultFileName;
-	this.resultJsonFileName = resultJsonFileName;
-	this.errorResultFileName = errorResultFileName;
-	this.status = status;
-    }
+	@Column(name = "resultFileName")
+	private String resultFileName;
 
-    public HpcJobInfo(Long pid, String algorithmName, Date submittedTime,
-	    String resultFileName, String resultJsonFileName,
-	    String errorResultFileName, int status) {
-	this.pid = pid;
-	this.algorithmName = algorithmName;
-	this.submittedTime = submittedTime;
-	this.resultFileName = resultFileName;
-	this.resultJsonFileName = resultJsonFileName;
-	this.errorResultFileName = errorResultFileName;
-	this.status = status;
-    }
+	@Column(name = "resultJsonFileName")
+	private String resultJsonFileName;
 
-    public Long getId() {
-        return id;
-    }
+	@Column(name = "errorResultFileName")
+	private String errorResultFileName;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	@Column(name = "status")
+	private int status = -1;
 
-    public Long getPid() {
-        return pid;
-    }
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "hpcAccountId", nullable = false)
+	private HpcAccount hpcAccount;
 
-    public void setPid(Long pid) {
-        this.pid = pid;
-    }
+	public HpcJobInfo() {
 
-    public String getAlgorithmName() {
-        return algorithmName;
-    }
+	}
 
-    public void setAlgorithmName(String algorithmName) {
-        this.algorithmName = algorithmName;
-    }
+	public HpcJobInfo(String algorithmName, Date submittedTime, String resultFileName, String resultJsonFileName,
+			String errorResultFileName, int status) {
+		this.algorithmName = algorithmName;
+		this.submittedTime = submittedTime;
+		this.resultFileName = resultFileName;
+		this.resultJsonFileName = resultJsonFileName;
+		this.errorResultFileName = errorResultFileName;
+		this.status = status;
+	}
 
-    public AlgorithmParamRequest getAlgorithmParamRequest() {
-        return algorithmParamRequest;
-    }
+	public HpcJobInfo(Long pid, String algorithmName, Date submittedTime, String resultFileName,
+			String resultJsonFileName, String errorResultFileName, int status) {
+		this.pid = pid;
+		this.algorithmName = algorithmName;
+		this.submittedTime = submittedTime;
+		this.resultFileName = resultFileName;
+		this.resultJsonFileName = resultJsonFileName;
+		this.errorResultFileName = errorResultFileName;
+		this.status = status;
+	}
 
-    public void setAlgorithmParamRequest(AlgorithmParamRequest algorithmParamRequest) {
-        this.algorithmParamRequest = algorithmParamRequest;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public Date getSubmittedTime() {
-        return submittedTime;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setSubmittedTime(Date submittedTime) {
-        this.submittedTime = submittedTime;
-    }
+	public Long getPid() {
+		return pid;
+	}
 
-    public String getResultFileName() {
-        return resultFileName;
-    }
+	public void setPid(Long pid) {
+		this.pid = pid;
+	}
 
-    public void setResultFileName(String resultFileName) {
-        this.resultFileName = resultFileName;
-    }
+	public String getAlgorithmName() {
+		return algorithmName;
+	}
 
-    public String getResultJsonFileName() {
-        return resultJsonFileName;
-    }
+	public void setAlgorithmName(String algorithmName) {
+		this.algorithmName = algorithmName;
+	}
 
-    public void setResultJsonFileName(String resultJsonFileName) {
-        this.resultJsonFileName = resultJsonFileName;
-    }
+	public AlgorithmParamRequest getAlgorithmParamRequest() {
+		return algorithmParamRequest;
+	}
 
-    public String getErrorResultFileName() {
-        return errorResultFileName;
-    }
+	public void setAlgorithmParamRequest(AlgorithmParamRequest algorithmParamRequest) {
+		this.algorithmParamRequest = algorithmParamRequest;
+	}
 
-    public void setErrorResultFileName(String errorResultFileName) {
-        this.errorResultFileName = errorResultFileName;
-    }
+	public Date getSubmittedTime() {
+		return submittedTime;
+	}
 
-    public int getStatus() {
-        return status;
-    }
+	public void setSubmittedTime(Date submittedTime) {
+		this.submittedTime = submittedTime;
+	}
 
-    public void setStatus(int status) {
-        this.status = status;
-    }
+	public String getResultFileName() {
+		return resultFileName;
+	}
 
-    public HpcAccount getHpcAccount() {
-        return hpcAccount;
-    }
+	public void setResultFileName(String resultFileName) {
+		this.resultFileName = resultFileName;
+	}
 
-    public void setHpcAccount(HpcAccount hpcAccount) {
-        this.hpcAccount = hpcAccount;
-    }
+	public String getResultJsonFileName() {
+		return resultJsonFileName;
+	}
+
+	public void setResultJsonFileName(String resultJsonFileName) {
+		this.resultJsonFileName = resultJsonFileName;
+	}
+
+	public String getErrorResultFileName() {
+		return errorResultFileName;
+	}
+
+	public void setErrorResultFileName(String errorResultFileName) {
+		this.errorResultFileName = errorResultFileName;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public HpcAccount getHpcAccount() {
+		return hpcAccount;
+	}
+
+	public void setHpcAccount(HpcAccount hpcAccount) {
+		this.hpcAccount = hpcAccount;
+	}
 
 }
