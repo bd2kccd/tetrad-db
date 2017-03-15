@@ -15,6 +15,7 @@ import edu.pitt.dbmi.tetrad.db.entity.DataValidation;
 import edu.pitt.dbmi.tetrad.db.entity.HpcJobInfo;
 import edu.pitt.dbmi.tetrad.db.entity.HpcJobLog;
 import edu.pitt.dbmi.tetrad.db.entity.HpcJobLogDetail;
+import edu.pitt.dbmi.tetrad.db.entity.HpcParameter;
 import edu.pitt.dbmi.tetrad.db.entity.JvmOption;
 
 /**
@@ -40,6 +41,7 @@ public class TetradDatabaseApplication {
 	    configuration.addAnnotatedClass(HpcJobLog.class);
 	    configuration.addAnnotatedClass(HpcJobLogDetail.class);
 	    configuration.addAnnotatedClass(JvmOption.class);
+	    configuration.addAnnotatedClass(HpcParameter.class);
 	    
 	    ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().build();
 	    sessionFactory = configuration.buildSessionFactory(serviceRegistry);

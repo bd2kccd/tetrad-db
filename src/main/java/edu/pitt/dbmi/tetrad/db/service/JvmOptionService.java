@@ -19,44 +19,43 @@ import edu.pitt.dbmi.tetrad.db.repository.JvmOptionRepository;
  */
 public class JvmOptionService implements JvmOptionRepository {
 
-    private final Session session;
-    
-    public JvmOptionService(final Session session) {
-	this.session = session;
-    }
+	private final Session session;
 
-    @Override
-    public void add(JvmOption jvmOptions) {
-	Transaction transaction = session.beginTransaction();
-	session.save(jvmOptions);
-	transaction.commit();
-    }
+	public JvmOptionService(final Session session) {
+		this.session = session;
+	}
 
-    @Override
-    public void update(JvmOption jvmOptions) {
-	Transaction transaction = session.beginTransaction();
-	session.saveOrUpdate(jvmOptions);
-	transaction.commit();
-    }
+	@Override
+	public void add(JvmOption jvmOptions) {
+		Transaction transaction = session.beginTransaction();
+		session.save(jvmOptions);
+		transaction.commit();
+	}
 
-    @Override
-    public void remove(JvmOption jvmOptions) {
-	Transaction transaction = session.beginTransaction();
-	session.delete(jvmOptions);
-	transaction.commit();
-    }
+	@Override
+	public void update(JvmOption jvmOptions) {
+		Transaction transaction = session.beginTransaction();
+		session.saveOrUpdate(jvmOptions);
+		transaction.commit();
+	}
 
-    @Override
-    public JvmOption findById(long id) {
-	return session.load(JvmOption.class, id);
-    }
+	@Override
+	public void remove(JvmOption jvmOptions) {
+		Transaction transaction = session.beginTransaction();
+		session.delete(jvmOptions);
+		transaction.commit();
+	}
 
-    @Override
-    public List<JvmOption> findByAlgorithmParamRequest(
-	    AlgorithmParamRequest AlgorithmParamRequest) {
-	Query query = session.createQuery("FROM JvmOption WHERE algorithmParamRequestId = ?");
-	query.setLong(0, AlgorithmParamRequest.getId());
-	return query.list();
-    }
-    
+	@Override
+	public JvmOption findById(long id) {
+		return session.load(JvmOption.class, id);
+	}
+
+	@Override
+	public List<JvmOption> findByAlgorithmParamRequest(AlgorithmParamRequest AlgorithmParamRequest) {
+		Query query = session.createQuery("FROM JvmOption WHERE algorithmParamRequestId = ?");
+		query.setLong(0, AlgorithmParamRequest.getId());
+		return query.list();
+	}
+
 }

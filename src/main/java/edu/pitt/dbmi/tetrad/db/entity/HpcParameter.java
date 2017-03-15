@@ -22,9 +22,12 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -40,17 +43,21 @@ public class HpcParameter implements Serializable {
 	private static final long serialVersionUID = -6268316192973727066L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", unique = true, nullable = false)
 	private Long id;
-    
-    @NotNull
-    @Column(nullable = false)
-    private String key;
-    
-    @NotNull
-    @Column(nullable = false)
-    private Object value;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "algorithmParamRequestId")
+	private AlgorithmParamRequest algorithmParamRequest;
+
+	@NotNull
+	@Column(nullable = false)
+	private String key;
+
+	@NotNull
+	@Column(nullable = false)
+	private String value;
 
 	public Long getId() {
 		return id;
@@ -58,6 +65,14 @@ public class HpcParameter implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public AlgorithmParamRequest getAlgorithmParamRequest() {
+		return algorithmParamRequest;
+	}
+
+	public void setAlgorithmParamRequest(AlgorithmParamRequest algorithmParamRequest) {
+		this.algorithmParamRequest = algorithmParamRequest;
 	}
 
 	public String getKey() {
@@ -68,12 +83,12 @@ public class HpcParameter implements Serializable {
 		this.key = key;
 	}
 
-	public Object getValue() {
+	public String getValue() {
 		return value;
 	}
 
-	public void setValue(Object value) {
+	public void setValue(String value) {
 		this.value = value;
 	}
-	
+
 }
