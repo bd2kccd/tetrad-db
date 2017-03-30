@@ -3,7 +3,6 @@ package edu.pitt.dbmi.tetrad.db.entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,151 +15,151 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
- * 
+ *
  * Oct 25, 2016 9:25:46 PM
- * 
+ *
  * @author Chirayu (Kong) Wongchokprasitti, PhD
- * 
+ *
  */
 @Entity
 public class AlgorithmParamRequest implements Serializable {
 
-	private static final long serialVersionUID = 4951671667628471413L;
+    private static final long serialVersionUID = 4951671667628471413L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", unique = true, nullable = false)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", unique = true, nullable = false)
+    private Long id;
 
-	@Column(name = "datasetPath", nullable = false)
-	private String datasetPath;
+    @Column(name = "datasetPath", nullable = false)
+    private String datasetPath;
 
-	@Column(name = "datasetMd5", nullable = false)
-	private String datasetMd5;
+    @Column(name = "datasetMd5", nullable = false)
+    private String datasetMd5;
 
-	@Column(name = "priorKnowledgePath")
-	private String priorKnowledgePath = null;
+    @Column(name = "priorKnowledgePath")
+    private String priorKnowledgePath = null;
 
-	@Column(name = "priorKnowledgeMd5")
-	private String priorKnowledgeMd5 = null;
+    @Column(name = "priorKnowledgeMd5")
+    private String priorKnowledgeMd5 = null;
 
-	@Column(name = "variableType", nullable = false)
-	private String variableType;
+    @Column(name = "variableType", nullable = false)
+    private String variableType;
 
-	@Column(name = "fileDelimiter", nullable = false)
-	private String fileDelimiter;
+    @Column(name = "fileDelimiter", nullable = false)
+    private String fileDelimiter;
 
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "dataValidationId", nullable = false, updatable = false)
-	private DataValidation dataValidation;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "dataValidationId", nullable = false, updatable = false)
+    private DataValidation dataValidation;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "algorithmParamRequest")
-	private List<AlgorithmParameter> algorithmParameters = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "algorithmParamRequest")
+    private List<AlgorithmParameter> algorithmParameters = new ArrayList<>();
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "algorithmParamRequest")
-	private List<JvmOption> jvmOptions = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "algorithmParamRequest")
+    private List<JvmOption> jvmOptions = new ArrayList<>();
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "algorithmParamRequest")
-	private List<HpcParameter> hpcParameters = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "algorithmParamRequest")
+    private List<HpcParameter> hpcParameters = new ArrayList<>();
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getDatasetPath() {
-		return datasetPath;
-	}
+    public String getDatasetPath() {
+        return datasetPath;
+    }
 
-	public void setDatasetPath(String datasetPath) {
-		this.datasetPath = datasetPath;
-	}
+    public void setDatasetPath(String datasetPath) {
+        this.datasetPath = datasetPath;
+    }
 
-	public String getDatasetMd5() {
-		return datasetMd5;
-	}
+    public String getDatasetMd5() {
+        return datasetMd5;
+    }
 
-	public void setDatasetMd5(String datasetMd5) {
-		this.datasetMd5 = datasetMd5;
-	}
+    public void setDatasetMd5(String datasetMd5) {
+        this.datasetMd5 = datasetMd5;
+    }
 
-	public String getPriorKnowledgePath() {
-		return priorKnowledgePath;
-	}
+    public String getPriorKnowledgePath() {
+        return priorKnowledgePath;
+    }
 
-	public void setPriorKnowledgePath(String priorKnowledgePath) {
-		this.priorKnowledgePath = priorKnowledgePath;
-	}
+    public void setPriorKnowledgePath(String priorKnowledgePath) {
+        this.priorKnowledgePath = priorKnowledgePath;
+    }
 
-	public String getPriorKnowledgeMd5() {
-		return priorKnowledgeMd5;
-	}
+    public String getPriorKnowledgeMd5() {
+        return priorKnowledgeMd5;
+    }
 
-	public void setPriorKnowledgeMd5(String priorKnowledgeMd5) {
-		this.priorKnowledgeMd5 = priorKnowledgeMd5;
-	}
+    public void setPriorKnowledgeMd5(String priorKnowledgeMd5) {
+        this.priorKnowledgeMd5 = priorKnowledgeMd5;
+    }
 
-	public String getVariableType() {
-		return variableType;
-	}
+    public String getVariableType() {
+        return variableType;
+    }
 
-	public void setVariableType(String variableType) {
-		this.variableType = variableType;
-	}
+    public void setVariableType(String variableType) {
+        this.variableType = variableType;
+    }
 
-	public String getFileDelimiter() {
-		return fileDelimiter;
-	}
+    public String getFileDelimiter() {
+        return fileDelimiter;
+    }
 
-	public void setFileDelimiter(String fileDelimiter) {
-		this.fileDelimiter = fileDelimiter;
-	}
+    public void setFileDelimiter(String fileDelimiter) {
+        this.fileDelimiter = fileDelimiter;
+    }
 
-	public DataValidation getDataValidation() {
-		return dataValidation;
-	}
+    public DataValidation getDataValidation() {
+        return dataValidation;
+    }
 
-	public void setDataValidation(DataValidation dataValidation) {
-		this.dataValidation = dataValidation;
-	}
+    public void setDataValidation(DataValidation dataValidation) {
+        this.dataValidation = dataValidation;
+    }
 
-	public List<AlgorithmParameter> getAlgorithmParameters() {
-		return algorithmParameters;
-	}
+    public List<AlgorithmParameter> getAlgorithmParameters() {
+        return algorithmParameters;
+    }
 
-	public void setAlgorithmParameters(List<AlgorithmParameter> algorithmParameters) {
-		if (algorithmParameters != null) {
-			for (AlgorithmParameter algorithmParameter : algorithmParameters) {
-				this.algorithmParameters.add(algorithmParameter);
-			}
-		}
-	}
+    public void setAlgorithmParameters(List<AlgorithmParameter> algorithmParameters) {
+        if (algorithmParameters != null) {
+            for (AlgorithmParameter algorithmParameter : algorithmParameters) {
+                this.algorithmParameters.add(algorithmParameter);
+            }
+        }
+    }
 
-	public List<JvmOption> getJvmOptions() {
-		return jvmOptions;
-	}
+    public List<JvmOption> getJvmOptions() {
+        return jvmOptions;
+    }
 
-	public void setJvmOptions(List<JvmOption> jvmOptions) {
-		if (jvmOptions != null) {
-			for (JvmOption jvmOption : jvmOptions) {
-				this.jvmOptions.add(jvmOption);
-			}
-		}
-	}
+    public void setJvmOptions(List<JvmOption> jvmOptions) {
+        if (jvmOptions != null) {
+            for (JvmOption jvmOption : jvmOptions) {
+                this.jvmOptions.add(jvmOption);
+            }
+        }
+    }
 
-	public List<HpcParameter> getHpcParameters() {
-		return hpcParameters;
-	}
+    public List<HpcParameter> getHpcParameters() {
+        return hpcParameters;
+    }
 
-	public void setHpcParameters(List<HpcParameter> hpcParameters) {
-		if(hpcParameters != null){
-			for(HpcParameter hpcParameter : hpcParameters){
-				this.hpcParameters.add(hpcParameter);
-			}
-		}
-	}
+    public void setHpcParameters(List<HpcParameter> hpcParameters) {
+        if (hpcParameters != null) {
+            for (HpcParameter hpcParameter : hpcParameters) {
+                this.hpcParameters.add(hpcParameter);
+            }
+        }
+    }
 
 }

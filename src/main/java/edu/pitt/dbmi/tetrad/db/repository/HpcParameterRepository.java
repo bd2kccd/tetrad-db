@@ -18,28 +18,27 @@
  */
 package edu.pitt.dbmi.tetrad.db.repository;
 
-import java.util.List;
-
 import edu.pitt.dbmi.tetrad.db.entity.AlgorithmParamRequest;
 import edu.pitt.dbmi.tetrad.db.entity.HpcParameter;
+import java.util.List;
 
 /**
- * 
+ *
  * Mar 14, 2017 7:22:45 PM
- * 
+ *
  * @author Chirayu Kong Wongchokprasitti, PhD (chw20@pitt.edu)
  *
  */
 public interface HpcParameterRepository {
-	
-	public void add(HpcParameter hpcParameter);
-	
-	public void update(HpcParameter hpcParameter);
-	
-	public void remove(HpcParameter hpcParameter);
-	
-	public HpcParameter findById(long id);
-	
-	public List<HpcParameter> findByAlgorithmParamRequest(AlgorithmParamRequest AlgorithmParamRequest);
+
+    public void add(HpcParameter hpcParameter);
+
+    public void update(HpcParameter hpcParameter);
+
+    public void remove(HpcParameter hpcParameter);
+
+    public HpcParameter findById(long id);
+
+    public List<HpcParameter> findByAlgorithmParamRequest(AlgorithmParamRequest AlgorithmParamRequest);
 
 }

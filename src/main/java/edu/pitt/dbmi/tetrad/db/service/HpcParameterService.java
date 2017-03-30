@@ -18,62 +18,60 @@
  */
 package edu.pitt.dbmi.tetrad.db.service;
 
+import edu.pitt.dbmi.tetrad.db.entity.AlgorithmParamRequest;
+import edu.pitt.dbmi.tetrad.db.entity.HpcParameter;
+import edu.pitt.dbmi.tetrad.db.repository.HpcParameterRepository;
 import java.util.List;
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import edu.pitt.dbmi.tetrad.db.entity.AlgorithmParamRequest;
-import edu.pitt.dbmi.tetrad.db.entity.HpcParameter;
-import edu.pitt.dbmi.tetrad.db.repository.HpcParameterRepository;
-
 /**
- * 
+ *
  * Mar 14, 2017 7:26:01 PM
- * 
+ *
  * @author Chirayu Kong Wongchokprasitti, PhD (chw20@pitt.edu)
  *
  */
 public class HpcParameterService implements HpcParameterRepository {
 
-	private final Session session;
-	
-	public HpcParameterService(final Session session) {
-		this.session = session;
-	}
-	
-	@Override
-	public void add(HpcParameter hpcParameter) {
-		Transaction transaction = session.beginTransaction();
-		session.save(hpcParameter);
-		transaction.commit();
-	}
+    private final Session session;
 
-	@Override
-	public void update(HpcParameter hpcParameter) {
-		Transaction transaction = session.beginTransaction();
-		session.saveOrUpdate(hpcParameter);
-		transaction.commit();
-	}
+    public HpcParameterService(final Session session) {
+        this.session = session;
+    }
 
-	@Override
-	public void remove(HpcParameter hpcParameter) {
-		Transaction transaction = session.beginTransaction();
-		session.delete(hpcParameter);
-		transaction.commit();
-	}
+    @Override
+    public void add(HpcParameter hpcParameter) {
+        Transaction transaction = session.beginTransaction();
+        session.save(hpcParameter);
+        transaction.commit();
+    }
 
-	@Override
-	public HpcParameter findById(long id) {
-		return session.load(HpcParameter.class, id);
-	}
+    @Override
+    public void update(HpcParameter hpcParameter) {
+        Transaction transaction = session.beginTransaction();
+        session.saveOrUpdate(hpcParameter);
+        transaction.commit();
+    }
 
-	@Override
-	public List<HpcParameter> findByAlgorithmParamRequest(AlgorithmParamRequest AlgorithmParamRequest) {
-		Query query = session.createQuery("FROM HpcParameter WHERE algorithmParamRequestId = ?");
-		query.setLong(0, AlgorithmParamRequest.getId());
-		return query.list();
-	}
+    @Override
+    public void remove(HpcParameter hpcParameter) {
+        Transaction transaction = session.beginTransaction();
+        session.delete(hpcParameter);
+        transaction.commit();
+    }
+
+    @Override
+    public HpcParameter findById(long id) {
+        return session.load(HpcParameter.class, id);
+    }
+
+    @Override
+    public List<HpcParameter> findByAlgorithmParamRequest(AlgorithmParamRequest AlgorithmParamRequest) {
+        Query query = session.createQuery("FROM HpcParameter WHERE algorithmParamRequestId = ?");
+        query.setLong(0, AlgorithmParamRequest.getId());
+        return query.list();
+    }
 
 }
