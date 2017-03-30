@@ -1,7 +1,6 @@
 package edu.pitt.dbmi.tetrad.db.entity;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,11 +11,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 /**
- * 
+ *
  * Oct 25, 2016 9:51:19 PM
- * 
+ *
  * @author Chirayu (Kong) Wongchokprasitti, PhD
- * 
+ *
  */
 @Entity
 public class AlgorithmParameter implements Serializable {
@@ -31,10 +30,10 @@ public class AlgorithmParameter implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "algorithmParamRequestId")
     private AlgorithmParamRequest algorithmParamRequest;
-    
+
     @Column(name = "parameter", nullable = false)
     private String parameter;
-    
+
     @Column(name = "value", nullable = false)
     private String value;
 
@@ -69,5 +68,5 @@ public class AlgorithmParameter implements Serializable {
     public void setValue(String value) {
         this.value = value;
     }
-    
+
 }

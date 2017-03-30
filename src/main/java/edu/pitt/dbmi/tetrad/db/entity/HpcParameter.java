@@ -19,7 +19,6 @@
 package edu.pitt.dbmi.tetrad.db.entity;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -31,64 +30,64 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 /**
- * 
+ *
  * Feb 20, 2017 6:05:41 PM
- * 
+ *
  * @author Chirayu Kong Wongchokprasitti, PhD (chw20@pitt.edu)
  *
  */
 @Entity
 public class HpcParameter implements Serializable {
 
-	private static final long serialVersionUID = -6268316192973727066L;
+    private static final long serialVersionUID = -6268316192973727066L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", unique = true, nullable = false)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", unique = true, nullable = false)
+    private Long id;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "algorithmParamRequestId")
-	private AlgorithmParamRequest algorithmParamRequest;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "algorithmParamRequestId")
+    private AlgorithmParamRequest algorithmParamRequest;
 
-	@NotNull
-	@Column(nullable = false)
-	private String key;
+    @NotNull
+    @Column(nullable = false)
+    private String key;
 
-	@NotNull
-	@Column(nullable = false)
-	private String value;
+    @NotNull
+    @Column(nullable = false)
+    private String value;
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public AlgorithmParamRequest getAlgorithmParamRequest() {
-		return algorithmParamRequest;
-	}
+    public AlgorithmParamRequest getAlgorithmParamRequest() {
+        return algorithmParamRequest;
+    }
 
-	public void setAlgorithmParamRequest(AlgorithmParamRequest algorithmParamRequest) {
-		this.algorithmParamRequest = algorithmParamRequest;
-	}
+    public void setAlgorithmParamRequest(AlgorithmParamRequest algorithmParamRequest) {
+        this.algorithmParamRequest = algorithmParamRequest;
+    }
 
-	public String getKey() {
-		return key;
-	}
+    public String getKey() {
+        return key;
+    }
 
-	public void setKey(String key) {
-		this.key = key;
-	}
+    public void setKey(String key) {
+        this.key = key;
+    }
 
-	public String getValue() {
-		return value;
-	}
+    public String getValue() {
+        return value;
+    }
 
-	public void setValue(String value) {
-		this.value = value;
-	}
+    public void setValue(String value) {
+        this.value = value;
+    }
 
 }
