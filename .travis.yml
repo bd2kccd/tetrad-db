@@ -6,8 +6,6 @@ jdk:
 branches:
   only:
   - development
-  - master
-
 
 env:
   global:
@@ -18,4 +16,4 @@ after_success:
 - mvn deploy --settings settings.xml -DskipTests=true -B
 
 before_script:
-  - echo "MAVEN_OPTS='-Xmx3g'"  > ~/.mavenrc
+  - echo "MAVEN_OPTS='-Xmx3g'" > ~/.mavenrc

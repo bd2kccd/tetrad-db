@@ -44,8 +44,10 @@ public class TetradDatabaseApplication {
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().build();
             sessionFactory = configuration.buildSessionFactory(serviceRegistry);
         } catch (Throwable e) {
-            System.err.println(e.getMessage());
-            throw new ExceptionInInitializerError(e);
+        	String tetradRunningWarning = "Tetrad application is already running...";
+            System.err.println(tetradRunningWarning);
+        	//System.err.println(e.getMessage());
+            throw new ExceptionInInitializerError(tetradRunningWarning);
         }
     }
 
