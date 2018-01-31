@@ -33,8 +33,8 @@ public class HpcJobInfo implements Serializable {
     @Column(name = "pid")
     private Long pid;
 
-    @Column(name = "algorithmName", nullable = false)
-    private String algorithmName;
+    @Column(name = "algoId", nullable = false)
+    private String algoId;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "algorithmParamRequestId", nullable = false)
@@ -63,9 +63,9 @@ public class HpcJobInfo implements Serializable {
 
     }
 
-    public HpcJobInfo(String algorithmName, Date submittedTime, String resultFileName, String resultJsonFileName,
+    public HpcJobInfo(String algoId, Date submittedTime, String resultFileName, String resultJsonFileName,
             String errorResultFileName, int status) {
-        this.algorithmName = algorithmName;
+        this.algoId = algoId;
         this.submittedTime = submittedTime;
         this.resultFileName = resultFileName;
         this.resultJsonFileName = resultJsonFileName;
@@ -73,10 +73,10 @@ public class HpcJobInfo implements Serializable {
         this.status = status;
     }
 
-    public HpcJobInfo(Long pid, String algorithmName, Date submittedTime, String resultFileName,
+    public HpcJobInfo(Long pid, String algoId, Date submittedTime, String resultFileName,
             String resultJsonFileName, String errorResultFileName, int status) {
         this.pid = pid;
-        this.algorithmName = algorithmName;
+        this.algoId = algoId;
         this.submittedTime = submittedTime;
         this.resultFileName = resultFileName;
         this.resultJsonFileName = resultJsonFileName;
@@ -100,12 +100,12 @@ public class HpcJobInfo implements Serializable {
         this.pid = pid;
     }
 
-    public String getAlgorithmName() {
-        return algorithmName;
+    public String getAlgoId() {
+        return algoId;
     }
 
-    public void setAlgorithmName(String algorithmName) {
-        this.algorithmName = algorithmName;
+    public void setAlgoId(String algoId) {
+        this.algoId = algoId;
     }
 
     public AlgorithmParamRequest getAlgorithmParamRequest() {

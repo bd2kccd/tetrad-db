@@ -1,6 +1,7 @@
 package edu.pitt.dbmi.tetrad.db.service;
 
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -8,11 +9,10 @@ import org.hibernate.Transaction;
 
 import edu.pitt.dbmi.tetrad.db.entity.AlgorithmParamRequest;
 import edu.pitt.dbmi.tetrad.db.entity.AlgorithmParameter;
-import edu.pitt.dbmi.tetrad.db.entity.DataValidation;
 import edu.pitt.dbmi.tetrad.db.entity.HpcAccount;
 import edu.pitt.dbmi.tetrad.db.entity.HpcJobInfo;
 import edu.pitt.dbmi.tetrad.db.entity.HpcParameter;
-import edu.pitt.dbmi.tetrad.db.entity.JvmOption;
+import edu.pitt.dbmi.tetrad.db.entity.JvmOptions;
 import edu.pitt.dbmi.tetrad.db.repository.HpcJobInfoRepository;
 
 /**
@@ -34,21 +34,19 @@ public class HpcJobInfoService implements HpcJobInfoRepository {
     public void add(HpcJobInfo hpcJobInfo) {
         Transaction transaction = session.beginTransaction();
         AlgorithmParamRequest algorithmParamRequest = hpcJobInfo.getAlgorithmParamRequest();
-        List<AlgorithmParameter> algorithmParameters = algorithmParamRequest.getAlgorithmParameters();
+        Set<AlgorithmParameter> algorithmParameters = algorithmParamRequest.getAlgorithmParameters();
         for (AlgorithmParameter algorithmParameter : algorithmParameters) {
             System.out.println("HpcJobInfoService: add: AlgorithmParameter: " + algorithmParameter.getParameter() + ":"
                     + algorithmParameter.getValue());
             session.save(algorithmParameter);
         }
-        DataValidation dataValidation = algorithmParamRequest.getDataValidation();
-        session.save(dataValidation);
-        List<JvmOption> jvmOptions = algorithmParamRequest.getJvmOptions();
-        for (JvmOption jvmOption : jvmOptions) {
+        JvmOptions jvmOptions = algorithmParamRequest.getJvmOptions();
+        if(jvmOptions != null){
             System.out.println(
-                    "HpcJobInfoService: add: JvmOption: " + jvmOption.getParameter() + ":" + jvmOption.getValue());
-            session.save(jvmOption);
+                    "HpcJobInfoService: add: JvmOptions: maxHeapSize: " + jvmOptions.getMaxHeapSize());
+        	session.save(jvmOptions);
         }
-        List<HpcParameter> hpcParameters = algorithmParamRequest.getHpcParameters();
+        Set<HpcParameter> hpcParameters = algorithmParamRequest.getHpcParameters();
         if (hpcParameters != null) {
             for (HpcParameter param : hpcParameters) {
                 System.out.println("HpcJobInfoService: add: HpcParameter: " + param.getKey() + ":" + param.getValue());
@@ -64,15 +62,13 @@ public class HpcJobInfoService implements HpcJobInfoRepository {
     public void update(HpcJobInfo hpcJobInfo) {
         Transaction transaction = session.beginTransaction();
         AlgorithmParamRequest algorithmParamRequest = hpcJobInfo.getAlgorithmParamRequest();
-        List<AlgorithmParameter> algorithmParameters = algorithmParamRequest.getAlgorithmParameters();
+        Set<AlgorithmParameter> algorithmParameters = algorithmParamRequest.getAlgorithmParameters();
         for (AlgorithmParameter algorithmParameter : algorithmParameters) {
             session.saveOrUpdate(algorithmParameter);
         }
-        DataValidation dataValidation = algorithmParamRequest.getDataValidation();
-        session.save(dataValidation);
-        List<JvmOption> jvmOptions = algorithmParamRequest.getJvmOptions();
-        for (JvmOption jvmOption : jvmOptions) {
-            session.saveOrUpdate(jvmOption);
+        JvmOptions jvmOptions = algorithmParamRequest.getJvmOptions();
+        if(jvmOptions != null){
+        	session.saveOrUpdate(jvmOptions);
         }
         session.saveOrUpdate(algorithmParamRequest);
         session.saveOrUpdate(hpcJobInfo);

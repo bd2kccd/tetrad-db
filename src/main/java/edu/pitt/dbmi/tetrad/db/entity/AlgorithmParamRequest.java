@@ -1,18 +1,16 @@
 package edu.pitt.dbmi.tetrad.db.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 /**
  *
@@ -30,6 +28,12 @@ public class AlgorithmParamRequest implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
+
+    @Column(name = "testId")
+    private String testId = null;
+
+    @Column(name = "scoreId")
+    private String scoreId = null;
 
     @Column(name = "datasetPath", nullable = false)
     private String datasetPath;
@@ -49,18 +53,14 @@ public class AlgorithmParamRequest implements Serializable {
     @Column(name = "fileDelimiter", nullable = false)
     private String fileDelimiter;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "dataValidationId", nullable = false, updatable = false)
-    private DataValidation dataValidation;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "algorithmParamRequest")
+    private Set<AlgorithmParameter> algorithmParameters = new HashSet<>();
+
+    @Column(name = "jvmOptions")
+    private JvmOptions jvmOptions = null;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "algorithmParamRequest")
-    private List<AlgorithmParameter> algorithmParameters = new ArrayList<>();
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "algorithmParamRequest")
-    private List<JvmOption> jvmOptions = new ArrayList<>();
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "algorithmParamRequest")
-    private List<HpcParameter> hpcParameters = new ArrayList<>();
+    private Set<HpcParameter> hpcParameters = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -70,7 +70,23 @@ public class AlgorithmParamRequest implements Serializable {
         this.id = id;
     }
 
-    public String getDatasetPath() {
+    public String getTestId() {
+		return testId;
+	}
+
+	public void setTestId(String testId) {
+		this.testId = testId;
+	}
+
+	public String getScoreId() {
+		return scoreId;
+	}
+
+	public void setScoreId(String scoreId) {
+		this.scoreId = scoreId;
+	}
+
+	public String getDatasetPath() {
         return datasetPath;
     }
 
@@ -118,48 +134,28 @@ public class AlgorithmParamRequest implements Serializable {
         this.fileDelimiter = fileDelimiter;
     }
 
-    public DataValidation getDataValidation() {
-        return dataValidation;
-    }
+	public Set<AlgorithmParameter> getAlgorithmParameters() {
+		return algorithmParameters;
+	}
 
-    public void setDataValidation(DataValidation dataValidation) {
-        this.dataValidation = dataValidation;
-    }
+	public void setAlgorithmParameters(Set<AlgorithmParameter> algorithmParameters) {
+		this.algorithmParameters = algorithmParameters;
+	}
 
-    public List<AlgorithmParameter> getAlgorithmParameters() {
-        return algorithmParameters;
-    }
+	public JvmOptions getJvmOptions() {
+		return jvmOptions;
+	}
 
-    public void setAlgorithmParameters(List<AlgorithmParameter> algorithmParameters) {
-        if (algorithmParameters != null) {
-            for (AlgorithmParameter algorithmParameter : algorithmParameters) {
-                this.algorithmParameters.add(algorithmParameter);
-            }
-        }
-    }
+	public void setJvmOptions(JvmOptions jvmOptions) {
+		this.jvmOptions = jvmOptions;
+	}
 
-    public List<JvmOption> getJvmOptions() {
-        return jvmOptions;
-    }
+	public Set<HpcParameter> getHpcParameters() {
+		return hpcParameters;
+	}
 
-    public void setJvmOptions(List<JvmOption> jvmOptions) {
-        if (jvmOptions != null) {
-            for (JvmOption jvmOption : jvmOptions) {
-                this.jvmOptions.add(jvmOption);
-            }
-        }
-    }
-
-    public List<HpcParameter> getHpcParameters() {
-        return hpcParameters;
-    }
-
-    public void setHpcParameters(List<HpcParameter> hpcParameters) {
-        if (hpcParameters != null) {
-            for (HpcParameter hpcParameter : hpcParameters) {
-                this.hpcParameters.add(hpcParameter);
-            }
-        }
-    }
+	public void setHpcParameters(Set<HpcParameter> hpcParameters) {
+		this.hpcParameters = hpcParameters;
+	}
 
 }
