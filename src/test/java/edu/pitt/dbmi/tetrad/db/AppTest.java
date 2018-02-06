@@ -1,20 +1,18 @@
 package edu.pitt.dbmi.tetrad.db;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.hibernate.Session;
 
 import edu.pitt.dbmi.tetrad.db.entity.AlgorithmParamRequest;
 import edu.pitt.dbmi.tetrad.db.entity.AlgorithmParameter;
 import edu.pitt.dbmi.tetrad.db.entity.HpcAccount;
-import edu.pitt.dbmi.tetrad.db.entity.DataValidation;
 import edu.pitt.dbmi.tetrad.db.entity.HpcJobInfo;
 import edu.pitt.dbmi.tetrad.db.entity.HpcParameter;
-import edu.pitt.dbmi.tetrad.db.entity.JvmOption;
+import edu.pitt.dbmi.tetrad.db.entity.JvmOptions;
 import edu.pitt.dbmi.tetrad.db.service.AlgorithmParamRequestService;
-import edu.pitt.dbmi.tetrad.db.service.DataValidationService;
 import edu.pitt.dbmi.tetrad.db.service.HpcAccountService;
 import edu.pitt.dbmi.tetrad.db.service.HpcJobInfoService;
 import junit.framework.Test;
@@ -72,23 +70,12 @@ public class AppTest extends TestCase {
             long id = hpcAccount.getId();
             hpcAccount = hpcAccountService.findById(id);
 
-            // DataValidation
-            DataValidation dataValidation = new DataValidation();
-            dataValidation.setNonZeroVariance(true);
-            dataValidation.setUniqueVarName(true);
-
-            DataValidationService dataValidationService = new DataValidationService(session);
-
-            dataValidationService.add(dataValidation);
-
             // AlgorithmParamRequest
             AlgorithmParamRequest algorithmParamRequest = new AlgorithmParamRequest();
             algorithmParamRequest.setDatasetPath("~/dataset.txt");
             algorithmParamRequest.setDatasetMd5("");
             algorithmParamRequest.setVariableType("continuous");
             algorithmParamRequest.setFileDelimiter("tab");
-            algorithmParamRequest.setDataValidation(dataValidation);
-            dataValidation.setAlgorithmParamRequest(algorithmParamRequest);
 
             // AlgorithmParameter
             AlgorithmParameter param0 = new AlgorithmParameter();
@@ -104,22 +91,15 @@ public class AppTest extends TestCase {
             param1.setAlgorithmParamRequest(algorithmParamRequest);
 
             //algorParamService.add(param1);
-            List<AlgorithmParameter> algorithmParameters = new ArrayList<>();
+            Set<AlgorithmParameter> algorithmParameters = new HashSet<>();
             algorithmParameters.add(param0);
             algorithmParameters.add(param1);
 
             algorithmParamRequest.setAlgorithmParameters(algorithmParameters);
 
-            // JvmOption
-            JvmOption jvmOption = new JvmOption();
-            jvmOption.setAlgorithmParamRequest(algorithmParamRequest);
-            jvmOption.setParameter("maxHeapSize");
-            jvmOption.setValue("100");
-
-            //JvmOptionService jvmOptionService = new JvmOptionService(session);
-            //jvmOptionService.add(jvmOption);
-            List<JvmOption> jvmOptions = new ArrayList<>();
-            jvmOptions.add(jvmOption);
+            // JvmOptions
+            JvmOptions jvmOptions = new JvmOptions();
+            jvmOptions.setMaxHeapSize(100);
 
             algorithmParamRequest.setJvmOptions(jvmOptions);
 
@@ -130,7 +110,7 @@ public class AppTest extends TestCase {
 
             //HpcParameterService hpcParamService = new HpcParameterService(session);
             //hpcParamService.add(hpcParameter);
-            List<HpcParameter> hpcParameters = new ArrayList<>();
+            Set<HpcParameter> hpcParameters = new HashSet<>();
             hpcParameters.add(hpcParameter);
 
             algorithmParamRequest.setHpcParameters(hpcParameters);
@@ -140,9 +120,9 @@ public class AppTest extends TestCase {
             algorParamReqService.add(algorithmParamRequest);
 
             //JobInfo
-            String algorithmName = "GFCI";
+            String algoId = "GFCI";
             HpcJobInfo jobInfo = new HpcJobInfo();
-            jobInfo.setAlgorithmName(algorithmName);
+            jobInfo.setAlgoId(algoId);
             jobInfo.setSubmittedTime(new Date(System.currentTimeMillis()));
             jobInfo.setAlgorithmParamRequest(algorithmParamRequest);
             jobInfo.setHpcAccount(hpcAccount);

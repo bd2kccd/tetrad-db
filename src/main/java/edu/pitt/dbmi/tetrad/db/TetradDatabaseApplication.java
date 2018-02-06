@@ -2,14 +2,14 @@ package edu.pitt.dbmi.tetrad.db;
 
 import edu.pitt.dbmi.tetrad.db.entity.AlgorithmParamRequest;
 import edu.pitt.dbmi.tetrad.db.entity.AlgorithmParameter;
-import edu.pitt.dbmi.tetrad.db.entity.DataValidation;
 import edu.pitt.dbmi.tetrad.db.entity.HpcAccount;
 import edu.pitt.dbmi.tetrad.db.entity.HpcJobInfo;
 import edu.pitt.dbmi.tetrad.db.entity.HpcJobLog;
 import edu.pitt.dbmi.tetrad.db.entity.HpcJobLogDetail;
 import edu.pitt.dbmi.tetrad.db.entity.HpcParameter;
-import edu.pitt.dbmi.tetrad.db.entity.JvmOption;
+import edu.pitt.dbmi.tetrad.db.entity.JvmOptions;
 import java.util.Date;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -33,12 +33,11 @@ public class TetradDatabaseApplication {
             // Mapping
             configuration.addAnnotatedClass(AlgorithmParameter.class);
             configuration.addAnnotatedClass(AlgorithmParamRequest.class);
-            configuration.addAnnotatedClass(DataValidation.class);
             configuration.addAnnotatedClass(HpcAccount.class);
             configuration.addAnnotatedClass(HpcJobInfo.class);
             configuration.addAnnotatedClass(HpcJobLog.class);
             configuration.addAnnotatedClass(HpcJobLogDetail.class);
-            configuration.addAnnotatedClass(JvmOption.class);
+            configuration.addAnnotatedClass(JvmOptions.class);
             configuration.addAnnotatedClass(HpcParameter.class);
 
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().build();
@@ -46,7 +45,7 @@ public class TetradDatabaseApplication {
         } catch (Throwable e) {
         	String tetradRunningWarning = "Tetrad application is already running...";
             System.err.println(tetradRunningWarning);
-        	//System.err.println(e.getMessage());
+            //JOptionPane.showMessageDialog(null, tetradRunningWarning);
             throw new ExceptionInInitializerError(tetradRunningWarning);
         }
     }
